@@ -75,6 +75,14 @@ import WorkspaceDashboard from './pages/portal/WorkspaceDashboard';
 import WorkspaceDocuments from './pages/portal/WorkspaceDocuments';
 import DeveloperPortal from './pages/portal/DeveloperPortal';
 
+// Shared command modules
+import CommandOverview from './pages/portal/shared/CommandOverview';
+import CentralRepository from './pages/portal/shared/CentralRepository';
+import LivePreview from './pages/portal/shared/LivePreview';
+import LiveStructure from './pages/portal/shared/LiveStructure';
+import LiveStatus from './pages/portal/shared/LiveStatus';
+import ReviewCenter from './pages/portal/shared/ReviewCenter';
+
 // Public layout wrapper
 function PublicLayout() {
   return (
@@ -151,6 +159,14 @@ export default function App() {
             }
           />
 
+          {/* ── Shared command modules (all protected) ── */}
+          <Route path="/portal/overview"    element={<ProtectedRoute><CommandOverview /></ProtectedRoute>} />
+          <Route path="/portal/repository"  element={<ProtectedRoute><CentralRepository /></ProtectedRoute>} />
+          <Route path="/portal/preview"     element={<ProtectedRoute><LivePreview /></ProtectedRoute>} />
+          <Route path="/portal/structure"   element={<ProtectedRoute><LiveStructure /></ProtectedRoute>} />
+          <Route path="/portal/status"      element={<ProtectedRoute><LiveStatus /></ProtectedRoute>} />
+          <Route path="/portal/review"      element={<ProtectedRoute><ReviewCenter /></ProtectedRoute>} />
+
           {/* ── Developer / Admin portal ── */}
           <Route
             path="/portal/developer"
@@ -226,6 +242,11 @@ export default function App() {
             <Route path="security/assets" element={<SecurityAssets />} />
             <Route path="reports" element={<Reports />} />
             <Route path="settings" element={<LeonardSettings />} />
+            <Route path="repository" element={<CentralRepository />} />
+            <Route path="preview"    element={<LivePreview />} />
+            <Route path="structure"  element={<LiveStructure />} />
+            <Route path="status"     element={<LiveStatus />} />
+            <Route path="review"     element={<ReviewCenter />} />
           </Route>
 
           {/* ── Per-workspace portal (:workspaceSlug = leonard | victoria | bernard | …) ── */}
