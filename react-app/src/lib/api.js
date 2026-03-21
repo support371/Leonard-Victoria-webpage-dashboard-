@@ -24,3 +24,6 @@ apiClient.interceptors.response.use(
     return Promise.reject(new Error(message));
   }
 );
+
+// Default export so callers can `import api from '../lib/api'`
+export default apiClient;

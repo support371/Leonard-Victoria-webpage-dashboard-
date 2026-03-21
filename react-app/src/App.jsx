@@ -11,6 +11,24 @@ import WorkspaceSidebar from './components/layout/WorkspaceSidebar';
 // Guards
 import ProtectedRoute from './guards/ProtectedRoute';
 import WorkspaceRoute from './guards/WorkspaceRoute';
+import LeonardPortalGuard from './guards/LeonardPortalGuard';
+
+// Leonard portal pages
+import LeonardLayout from './pages/portal/leonard/LeonardLayout';
+import LeonardDashboard from './pages/portal/leonard/LeonardDashboard';
+import Clients from './pages/portal/leonard/Clients';
+import ClientDetail from './pages/portal/leonard/ClientDetail';
+import Portfolio from './pages/portal/leonard/Portfolio';
+import DigitalAssets from './pages/portal/leonard/DigitalAssets';
+import CryptoAssets from './pages/portal/leonard/CryptoAssets';
+import RealEstatePortfolio from './pages/portal/leonard/RealEstatePortfolio';
+import RealEstate from './pages/portal/leonard/RealEstate';
+import RealEstateDetail from './pages/portal/leonard/RealEstateDetail';
+import Security from './pages/portal/leonard/Security';
+import SecurityIncidents from './pages/portal/leonard/SecurityIncidents';
+import SecurityAssets from './pages/portal/leonard/SecurityAssets';
+import Reports from './pages/portal/leonard/Reports';
+import LeonardSettings from './pages/portal/leonard/Settings';
 
 // Public pages
 import Home from './pages/public/Home';
@@ -119,6 +137,34 @@ export default function App() {
               </ProtectedRoute>
             }
           />
+
+          {/* ── Leonard Enterprise Portal ── */}
+          <Route
+            path="/portal/leonard"
+            element={
+              <ProtectedRoute>
+                <LeonardPortalGuard>
+                  <LeonardLayout />
+                </LeonardPortalGuard>
+              </ProtectedRoute>
+            }
+          >
+            <Route index element={<LeonardDashboard />} />
+            <Route path="dashboard" element={<LeonardDashboard />} />
+            <Route path="clients" element={<Clients />} />
+            <Route path="clients/:clientId" element={<ClientDetail />} />
+            <Route path="portfolio" element={<Portfolio />} />
+            <Route path="portfolio/digital-assets" element={<DigitalAssets />} />
+            <Route path="portfolio/crypto" element={<CryptoAssets />} />
+            <Route path="portfolio/real-estate" element={<RealEstatePortfolio />} />
+            <Route path="real-estate" element={<RealEstate />} />
+            <Route path="real-estate/:propertyId" element={<RealEstateDetail />} />
+            <Route path="security" element={<Security />} />
+            <Route path="security/incidents" element={<SecurityIncidents />} />
+            <Route path="security/assets" element={<SecurityAssets />} />
+            <Route path="reports" element={<Reports />} />
+            <Route path="settings" element={<LeonardSettings />} />
+          </Route>
 
           {/* ── Per-workspace portal (:workspaceSlug = leonard | victoria | bernard | …) ── */}
           <Route
