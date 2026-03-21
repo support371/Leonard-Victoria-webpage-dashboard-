@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Outlet, NavLink, useLocation, useNavigate, Link } from 'react-router-dom';
 import {
   LayoutDashboard, CalendarClock, ScrollText, Users2,
-  FileText, Settings, Menu, X, ChevronRight, LogOut, Scale,
+  FileText, Settings, Menu, X, ChevronRight, LogOut, Scale, Shield,
 } from 'lucide-react';
 import { useAuth } from '../../../hooks/useAuth';
 
@@ -21,10 +21,10 @@ function NavItem({ to, icon: Icon, label }) {
       to={to}
       end={to.endsWith('dashboard')}
       className={({ isActive }) =>
-        `flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+        `flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-semibold transition-colors ${
           isActive
-            ? 'bg-purple-800 text-white'
-            : 'text-purple-200 hover:bg-purple-800/60 hover:text-white'
+            ? 'bg-navy-700 text-white'
+            : 'text-navy-300 hover:bg-navy-800 hover:text-white'
         }`
       }
     >
@@ -39,7 +39,7 @@ function Breadcrumb({ path }) {
   if (!parts.length) return <span className="text-sm text-gray-500">Dashboard</span>;
   return (
     <div className="flex items-center gap-1 text-sm text-gray-500">
-      <Link to="/portal/victoria/dashboard" className="hover:text-purple-700">Victoria</Link>
+      <Link to="/portal/victoria/dashboard" className="hover:text-navy-700 font-medium">Victoria</Link>
       {parts.map((p, i) => (
         <span key={i} className="flex items-center gap-1">
           <ChevronRight size={14} />
@@ -59,38 +59,52 @@ export default function VictoriaLayout() {
   const handleSignOut = async () => { await signOut(); navigate('/'); };
 
   const Sidebar = () => (
-    <div className="flex flex-col h-full bg-purple-950 text-white w-64">
-      {/* Brand */}
-      <div className="px-5 py-5 border-b border-purple-900">
-        <div className="flex items-center gap-3">
-          <div className="w-9 h-9 bg-purple-700 rounded-lg flex items-center justify-center">
-            <Scale size={18} className="text-white" />
-          </div>
-          <div>
-            <p className="font-bold text-sm leading-tight">Victoria</p>
-            <p className="text-xs text-purple-400 mt-0.5">Governance Portal</p>
-          </div>
+    <div className="flex flex-col h-full bg-navy-950 text-white w-64">
+      {/* IW Command Center brand header */}
+      <div className="px-5 pt-5 pb-4 border-b border-navy-800">
+        <div className="flex items-center justify-between mb-3">
+          <Link to="/portal" className="flex items-center gap-2 group">
+            <div className="w-7 h-7 bg-blue-600 rounded-md flex items-center justify-center flex-shrink-0 group-hover:bg-blue-500 transition-colors">
+              <Shield size={14} className="text-white" />
+            </div>
+            <span className="text-xs font-bold text-blue-400 tracking-wide group-hover:text-blue-300 transition-colors leading-tight">
+              IW Command Center
+            </span>
+          </Link>
         </div>
+        <p className="text-[10px] uppercase tracking-widest text-navy-500 font-semibold mb-0.5">Portal</p>
+        <h1 className="text-sm font-bold text-white">Victoria Portal</h1>
+        <span className="mt-1.5 inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-navy-800 text-purple-400 uppercase tracking-wide">
+          Governance
+        </span>
       </div>
 
-      {/* Nav */}
-      <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
+      {/* Navigation */}
+      <nav className="flex-1 px-3 py-4 space-y-0.5 overflow-y-auto">
         {NAV.map((item) => <NavItem key={item.to} {...item} />)}
       </nav>
 
-      {/* User */}
-      <div className="px-4 py-4 border-t border-purple-900">
-        <div className="flex items-center gap-3 mb-3">
-          <div className="w-8 h-8 rounded-full bg-purple-700 flex items-center justify-center text-sm font-bold">
+      {/* Footer */}
+      <div className="px-3 pb-4 pt-2 border-t border-navy-800 space-y-0.5">
+        <div className="flex items-center gap-3 px-3 py-2 mb-1">
+          <div className="w-7 h-7 rounded-full bg-navy-700 flex items-center justify-center text-xs font-bold flex-shrink-0">
             {session?.user?.email?.[0]?.toUpperCase()}
           </div>
-          <p className="text-xs text-purple-300 truncate flex-1">{session?.user?.email}</p>
+          <p className="text-xs text-navy-400 truncate flex-1">{session?.user?.email}</p>
         </div>
         <button
-          onClick={handleSignOut}
-          className="w-full flex items-center gap-2 text-xs text-purple-400 hover:text-white transition-colors"
+          onClick={() => navigate('/portal')}
+          className="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium text-navy-400 hover:bg-navy-800 hover:text-white transition-colors"
         >
-          <LogOut size={12} /> Sign Out
+          <ChevronRight size={16} className="rotate-180" />
+          All Portals
+        </button>
+        <button
+          onClick={handleSignOut}
+          className="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium text-navy-400 hover:bg-navy-800 hover:text-white transition-colors"
+        >
+          <LogOut size={16} />
+          Sign Out
         </button>
       </div>
     </div>
@@ -116,7 +130,7 @@ export default function VictoriaLayout() {
       {/* Main content */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Topbar */}
-        <header className="bg-white border-b border-gray-200 px-4 py-3 flex items-center gap-4 flex-shrink-0">
+        <header className="bg-white border-b border-gray-200 px-4 py-3 flex items-center gap-4 flex-shrink-0 h-14">
           <button className="lg:hidden" onClick={() => setSidebarOpen(true)}>
             <Menu size={20} className="text-gray-500" />
           </button>

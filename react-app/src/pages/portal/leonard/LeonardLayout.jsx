@@ -1,16 +1,16 @@
 import { useState } from 'react';
-import { NavLink, Outlet, useNavigate, useLocation } from 'react-router-dom';
+import { NavLink, Outlet, useNavigate, useLocation, Link } from 'react-router-dom';
 import {
   LayoutDashboard, Users, TrendingUp, Building2, ShieldAlert,
   FileBarChart, Settings, LogOut, ChevronDown, ChevronRight,
-  Bitcoin, Landmark, BriefcaseBusiness, Menu, X,
+  Bitcoin, Landmark, BriefcaseBusiness, Menu, X, Shield, Home,
 } from 'lucide-react';
 import { useAuth } from '../../../hooks/useAuth';
 import clsx from 'clsx';
 
 const NAV = [
-  { to: '/portal/leonard/dashboard', label: 'Dashboard', icon: LayoutDashboard },
-  { to: '/portal/leonard/clients',   label: 'Clients',   icon: Users },
+  { to: '/portal/leonard/dashboard', label: 'Overview', icon: Home },
+  { to: '/portal/leonard/clients',   label: 'Clients',  icon: Users },
   {
     label: 'Portfolio', icon: TrendingUp,
     children: [
@@ -20,7 +20,7 @@ const NAV = [
       { to: '/portal/leonard/portfolio/real-estate',       label: 'Real Estate',    icon: Building2 },
     ],
   },
-  { to: '/portal/leonard/real-estate', label: 'Properties', icon: Building2 },
+  { to: '/portal/leonard/real-estate', label: 'Real Estate', icon: Building2 },
   {
     label: 'Security', icon: ShieldAlert,
     children: [
@@ -46,7 +46,7 @@ function NavItem({ item, depth = 0 }) {
         <button
           onClick={() => setOpen((o) => !o)}
           className={clsx(
-            'w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm font-medium transition-colors',
+            'w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm font-semibold transition-colors',
             isActive ? 'text-white bg-navy-700' : 'text-navy-300 hover:bg-navy-800 hover:text-white'
           )}
         >
@@ -84,7 +84,7 @@ function NavItem({ item, depth = 0 }) {
       end={item.to === '/portal/leonard/dashboard'}
       className={({ isActive }) =>
         clsx(
-          'flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium transition-colors',
+          'flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-semibold transition-colors',
           isActive ? 'text-white bg-navy-700' : 'text-navy-300 hover:bg-navy-800 hover:text-white'
         )
       }
@@ -106,21 +106,27 @@ function Sidebar({ onClose }) {
 
   return (
     <div className="w-60 min-h-screen bg-navy-950 text-white flex flex-col flex-shrink-0">
-      {/* Workspace header */}
-      <div className="px-5 pt-6 pb-4 border-b border-navy-800">
-        <div className="flex items-center justify-between">
-          <div>
-            <span className="text-[10px] uppercase tracking-widest text-navy-400 font-semibold">Workspace</span>
-            <h1 className="text-base font-bold text-white mt-0.5">Leonard</h1>
-          </div>
+      {/* IW Command Center brand header */}
+      <div className="px-5 pt-5 pb-4 border-b border-navy-800">
+        <div className="flex items-center justify-between mb-3">
+          <Link to="/portal" className="flex items-center gap-2 group">
+            <div className="w-7 h-7 bg-blue-600 rounded-md flex items-center justify-center flex-shrink-0 group-hover:bg-blue-500 transition-colors">
+              <Shield size={14} className="text-white" />
+            </div>
+            <span className="text-xs font-bold text-blue-400 tracking-wide group-hover:text-blue-300 transition-colors leading-tight">
+              IW Command Center
+            </span>
+          </Link>
           {onClose && (
-            <button onClick={onClose} className="text-navy-400 hover:text-white lg:hidden">
+            <button onClick={onClose} className="text-navy-400 hover:text-white lg:hidden transition-colors">
               <X size={18} />
             </button>
           )}
         </div>
-        <span className="mt-2 inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-navy-800 text-navy-300 uppercase tracking-wide">
-          Enterprise Portal
+        <p className="text-[10px] uppercase tracking-widest text-navy-500 font-semibold mb-0.5">Portal</p>
+        <h1 className="text-sm font-bold text-white">Leonard Portal</h1>
+        <span className="mt-1.5 inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-navy-800 text-blue-400 uppercase tracking-wide">
+          Enterprise
         </span>
       </div>
 
@@ -135,14 +141,14 @@ function Sidebar({ onClose }) {
       <div className="px-3 pb-4 pt-2 border-t border-navy-800 space-y-0.5">
         <button
           onClick={() => navigate('/portal')}
-          className="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-navy-400 hover:bg-navy-800 hover:text-white transition-colors"
+          className="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium text-navy-400 hover:bg-navy-800 hover:text-white transition-colors"
         >
           <ChevronRight size={16} className="rotate-180" />
-          All Workspaces
+          All Portals
         </button>
         <button
           onClick={handleSignOut}
-          className="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-navy-400 hover:bg-navy-800 hover:text-white transition-colors"
+          className="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium text-navy-400 hover:bg-navy-800 hover:text-white transition-colors"
         >
           <LogOut size={16} />
           Sign Out

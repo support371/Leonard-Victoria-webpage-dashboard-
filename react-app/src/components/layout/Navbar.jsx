@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
-import { Menu, X, ChevronDown, LogOut, User } from 'lucide-react';
+import { Menu, X, LogOut, User, Shield } from 'lucide-react';
 import { useAuth } from '../../hooks/useAuth';
 
 const NAV_LINKS = [
@@ -23,21 +23,21 @@ export default function Navbar() {
   };
 
   return (
-    <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
+    <header className="bg-navy-900 border-b border-navy-700 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-navy-800 rounded-sm flex items-center justify-center">
-              <span className="text-white font-bold text-sm">LV</span>
+          <Link to="/" className="flex items-center space-x-2.5 group">
+            <div className="w-8 h-8 bg-blue-600 rounded-md flex items-center justify-center flex-shrink-0 group-hover:bg-blue-500 transition-colors">
+              <Shield className="w-4 h-4 text-white" />
             </div>
-            <span className="font-semibold text-gray-900 text-lg tracking-tight">
-              Leonard <span className="text-navy-700">&amp;</span> Victoria
+            <span className="font-semibold text-white text-base tracking-tight">
+              IW <span className="text-blue-400">Command Center</span>
             </span>
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center space-x-1">
+          <nav className="hidden md:flex items-center space-x-0.5">
             {NAV_LINKS.map((link) => (
               <NavLink
                 key={link.href}
@@ -45,8 +45,8 @@ export default function Navbar() {
                 className={({ isActive }) =>
                   `px-3 py-2 text-sm font-medium rounded-md transition-colors ${
                     isActive
-                      ? 'text-navy-800 bg-navy-50'
-                      : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                      ? 'text-white bg-navy-700'
+                      : 'text-navy-300 hover:text-white hover:bg-navy-800'
                   }`
                 }
               >
@@ -59,28 +59,28 @@ export default function Navbar() {
           <div className="hidden md:flex items-center space-x-3">
             <Link
               to="/membership"
-              className="text-sm font-medium text-navy-800 hover:text-navy-600"
+              className="text-sm font-medium text-navy-300 hover:text-white transition-colors"
             >
               Membership
             </Link>
             <Link
               to="/donate"
-              className="text-sm font-medium bg-navy-800 text-white px-4 py-2 rounded-md hover:bg-navy-700 transition-colors"
+              className="text-sm font-medium bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-500 transition-colors"
             >
               Donate
             </Link>
             {session ? (
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center space-x-1">
                 <Link
                   to="/portal"
-                  className="flex items-center space-x-1 text-sm font-medium text-gray-700 hover:text-gray-900"
+                  className="flex items-center space-x-1.5 text-sm font-medium text-navy-300 hover:text-white px-3 py-2 rounded-md hover:bg-navy-800 transition-colors"
                 >
                   <User className="w-4 h-4" />
                   <span>Portal</span>
                 </Link>
                 <button
                   onClick={handleSignOut}
-                  className="text-gray-400 hover:text-gray-600"
+                  className="p-2 text-navy-400 hover:text-white hover:bg-navy-800 rounded-md transition-colors"
                   title="Sign out"
                 >
                   <LogOut className="w-4 h-4" />
@@ -89,7 +89,7 @@ export default function Navbar() {
             ) : (
               <Link
                 to="/login"
-                className="text-sm font-medium text-gray-600 hover:text-gray-900"
+                className="text-sm font-medium text-navy-300 hover:text-white px-3 py-2 rounded-md hover:bg-navy-800 transition-colors"
               >
                 Sign In
               </Link>
@@ -98,7 +98,7 @@ export default function Navbar() {
 
           {/* Mobile menu toggle */}
           <button
-            className="md:hidden p-2 rounded-md text-gray-600 hover:bg-gray-100"
+            className="md:hidden p-2 rounded-md text-navy-300 hover:text-white hover:bg-navy-800 transition-colors"
             onClick={() => setMobileOpen(!mobileOpen)}
           >
             {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -108,33 +108,35 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="md:hidden border-t border-gray-200 bg-white px-4 py-3 space-y-1">
+        <div className="md:hidden border-t border-navy-700 bg-navy-900 px-4 py-3 space-y-1">
           {NAV_LINKS.map((link) => (
             <NavLink
               key={link.href}
               to={link.href}
               onClick={() => setMobileOpen(false)}
               className={({ isActive }) =>
-                `block px-3 py-2 text-sm font-medium rounded-md ${
-                  isActive ? 'text-navy-800 bg-navy-50' : 'text-gray-700 hover:bg-gray-50'
+                `block px-3 py-2 text-sm font-medium rounded-md transition-colors ${
+                  isActive
+                    ? 'text-white bg-navy-700'
+                    : 'text-navy-300 hover:text-white hover:bg-navy-800'
                 }`
               }
             >
               {link.label}
             </NavLink>
           ))}
-          <div className="pt-2 border-t border-gray-100 space-y-1">
+          <div className="pt-2 border-t border-navy-700 space-y-1">
             <Link
               to="/membership"
               onClick={() => setMobileOpen(false)}
-              className="block px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-md"
+              className="block px-3 py-2 text-sm font-medium text-navy-300 hover:text-white hover:bg-navy-800 rounded-md transition-colors"
             >
               Membership
             </Link>
             <Link
               to="/donate"
               onClick={() => setMobileOpen(false)}
-              className="block px-3 py-2 text-sm font-medium bg-navy-800 text-white rounded-md text-center"
+              className="block px-3 py-2 text-sm font-medium bg-blue-600 text-white rounded-md text-center hover:bg-blue-500 transition-colors"
             >
               Donate
             </Link>
@@ -143,13 +145,13 @@ export default function Navbar() {
                 <Link
                   to="/portal"
                   onClick={() => setMobileOpen(false)}
-                  className="block px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-md"
+                  className="block px-3 py-2 text-sm font-medium text-navy-300 hover:text-white hover:bg-navy-800 rounded-md transition-colors"
                 >
                   Portal
                 </Link>
                 <button
                   onClick={() => { handleSignOut(); setMobileOpen(false); }}
-                  className="block w-full text-left px-3 py-2 text-sm font-medium text-red-600 hover:bg-red-50 rounded-md"
+                  className="block w-full text-left px-3 py-2 text-sm font-medium text-red-400 hover:text-white hover:bg-red-900/40 rounded-md transition-colors"
                 >
                   Sign Out
                 </button>
@@ -158,7 +160,7 @@ export default function Navbar() {
               <Link
                 to="/login"
                 onClick={() => setMobileOpen(false)}
-                className="block px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-md"
+                className="block px-3 py-2 text-sm font-medium text-navy-300 hover:text-white hover:bg-navy-800 rounded-md transition-colors"
               >
                 Sign In
               </Link>
