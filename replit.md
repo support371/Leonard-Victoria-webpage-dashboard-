@@ -1,32 +1,65 @@
-# NexusDash — Project Overview
+# Infinite Wealth Command Center
 
 ## What It Is
-A React-based management and compliance intelligence dashboard for the Astra Project (Project ID: XJ-994). Built for two roles: Management (Leonard & Victoria) and Legal Counsel (Agent Bernard).
+A premium, faith-based private membership command platform — **IW Command Center**. Built for Leonard M. Diana (owner) with role-based portals for Victoria, Bernard, and a Developer.
 
 ## Tech Stack
 - **Framework:** React 18 + Vite 7
-- **Styling:** Tailwind CSS 3 with tailwindcss-animate
-- **Icons:** lucide-react
+- **Routing:** React Router DOM v6
+- **Styling:** Tailwind CSS 3.4
+- **Icons:** Lucide React
 - **Runtime:** Node.js 20
 
-## Project Structure
+## File Structure
 ```
-Leonard-Victoria-webpage-dashboard--feat-build-react-webpage-8929662002850160816/
-└── react-app/
-    ├── src/
-    │   ├── App.jsx          # All components and app logic
-    │   └── index.css        # Tailwind base styles
-    ├── index.html
-    ├── vite.config.js       # Vite config (host 0.0.0.0, port 5000)
-    └── package.json
+react-app/src/
+├── App.jsx                    # Full router — all routes wired
+├── index.css
+├── main.jsx
+├── data/
+│   └── seed.js                # All mock data (roles, files, reviews, events, etc.)
+├── components/
+│   ├── ui/index.jsx            # Reusable UI: Badge, Card, StatCard, Btn, StatusDot, etc.
+│   └── layout/
+│       ├── PublicLayout.jsx    # Nav + Footer wrapper for public pages
+│       └── DashboardShell.jsx  # Sidebar + Header for dashboard
+├── pages/
+│   ├── public/
+│   │   ├── Home.jsx
+│   │   ├── About.jsx
+│   │   ├── Services.jsx
+│   │   ├── Membership.jsx
+│   │   ├── Community.jsx
+│   │   ├── Resources.jsx
+│   │   └── Contact.jsx
+│   ├── dashboard/
+│   │   ├── LeonardPortal.jsx   # Owner Command — primary/default portal
+│   │   ├── VictoriaPortal.jsx  # Operations Portal
+│   │   ├── BernardPortal.jsx   # Governance & Legal Portal
+│   │   └── DeveloperPortal.jsx # Technical / Dev Portal
+│   ├── modules/
+│   │   ├── ReviewCenter.jsx
+│   │   ├── CentralRepository.jsx
+│   │   ├── LivePreview.jsx
+│   │   ├── LiveStructure.jsx
+│   │   ├── LiveStatus.jsx
+│   │   ├── ActivityLogs.jsx
+│   │   └── Settings.jsx
+│   └── NotFound.jsx
 ```
 
-## Features
-- **Dashboard Overview:** Metric cards (Project Health, Compliance Score, Active Users), Recent Activity feed, Compliance Snapshot widget
-- **Central Repository:** Filterable file table with category/status badges; Legal View limits to legal docs only
-- **Live Site Preview:** Simulated browser rendering the Astra marketing site with hero section, team cards, and footer
-- **Legal Status:** Compliance area tracker with status badges (Compliant / In Review / Action Required), summary counts, severity-coded left borders, and due dates
-- **Role-Based Access:** Toggle between Management and Legal views — affects welcome message, file visibility, header identity, and sidebar indicator
+## Routes
+- **Public:** `/`, `/about`, `/services`, `/membership`, `/community`, `/resources`, `/contact`
+- **Dashboard:** `/dashboard` → redirects to `/dashboard/leonard`
+- **Portals:** `/dashboard/leonard`, `/dashboard/victoria`, `/dashboard/bernard`, `/dashboard/developer`
+- **Modules:** `/dashboard/reviews`, `/dashboard/repository`, `/dashboard/preview`, `/dashboard/structure`, `/dashboard/status`, `/dashboard/activity`, `/dashboard/settings`
+- **Fallback:** `*` → NotFound
+
+## Design System
+- Premium dark navy/slate + amber/gold accent color system
+- Reusable UI: `Badge`, `Card`, `StatCard`, `SectionHeader`, `ModuleSection`, `Btn`, `StatusDot`, `EmptyState`
+- Owner-first architecture: Leonard portal is default dashboard landing
+- Role switcher in sidebar affects header identity
 
 ## Workflow
 - **Command:** `cd Leonard-Victoria-webpage-dashboard--feat-build-react-webpage-8929662002850160816/react-app && npm install && npm run dev`
