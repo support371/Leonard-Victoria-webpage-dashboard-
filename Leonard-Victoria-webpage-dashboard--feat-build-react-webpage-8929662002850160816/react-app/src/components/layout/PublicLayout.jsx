@@ -27,15 +27,15 @@ export const PublicNav = () => {
   useEffect(() => { setOpen(false); }, [location]);
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-slate-950/95 backdrop-blur-md shadow-lg shadow-black/30' : 'bg-transparent'}`}>
-      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <Link to="/" className="flex items-center space-x-3">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-amber-500 to-yellow-600 flex items-center justify-center">
-            <span className="text-white font-black text-xs">IW</span>
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-slate-950/98 backdrop-blur-md shadow-lg shadow-black/20' : 'bg-slate-950'}`}>
+      <div className="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
+        <Link to="/" className="flex items-center space-x-2.5">
+          <div className="w-7 h-7 rounded-md bg-amber-500 flex items-center justify-center flex-shrink-0">
+            <span className="text-white font-black text-[10px]">IW</span>
           </div>
-          <div className="leading-tight hidden sm:block">
-            <p className="text-white font-bold text-sm tracking-wide">Infinite Wealth</p>
-            <p className="text-amber-400 text-[10px] font-semibold tracking-widest uppercase">Command Center</p>
+          <div className="leading-tight">
+            <p className="text-white font-bold text-sm leading-none">Infinite Wealth</p>
+            <p className="text-amber-500 text-[9px] font-semibold tracking-widest uppercase leading-none mt-0.5">Command Center</p>
           </div>
         </Link>
 
@@ -44,10 +44,10 @@ export const PublicNav = () => {
             <Link
               key={link.to}
               to={link.to}
-              className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${
+              className={`px-3.5 py-2 text-sm font-medium transition-colors ${
                 location.pathname === link.to
                   ? 'text-amber-400'
-                  : 'text-slate-300 hover:text-white hover:bg-white/5'
+                  : 'text-slate-300 hover:text-white'
               }`}
             >
               {link.label}
@@ -55,17 +55,14 @@ export const PublicNav = () => {
           ))}
         </nav>
 
-        <div className="flex items-center space-x-3">
+        <div className="flex items-center gap-3">
           <button
             onClick={() => navigate('/dashboard')}
-            className="hidden sm:flex items-center px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold rounded-lg transition-colors"
+            className="hidden sm:flex items-center px-4 py-2 bg-amber-500 hover:bg-amber-400 text-white text-sm font-bold rounded-md transition-colors"
           >
-            Command Center <ChevronRight className="w-4 h-4 ml-1" />
+            Command Center
           </button>
-          <button
-            onClick={() => setOpen(!open)}
-            className="lg:hidden p-2 text-slate-300 hover:text-white"
-          >
+          <button onClick={() => setOpen(!open)} className="lg:hidden p-2 text-slate-300 hover:text-white">
             {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
@@ -78,7 +75,7 @@ export const PublicNav = () => {
               key={link.to}
               to={link.to}
               className={`block px-4 py-3 text-sm font-medium rounded-lg ${
-                location.pathname === link.to ? 'text-amber-400 bg-amber-500/10' : 'text-slate-300 hover:text-white hover:bg-white/5'
+                location.pathname === link.to ? 'text-amber-400' : 'text-slate-300 hover:text-white'
               }`}
             >
               {link.label}
@@ -86,9 +83,9 @@ export const PublicNav = () => {
           ))}
           <button
             onClick={() => navigate('/dashboard')}
-            className="w-full mt-3 px-4 py-3 bg-amber-500 text-white text-sm font-semibold rounded-lg"
+            className="w-full mt-3 px-4 py-3 bg-amber-500 text-white text-sm font-bold rounded-lg"
           >
-            Enter Command Center
+            Command Center
           </button>
         </div>
       )}
@@ -97,50 +94,58 @@ export const PublicNav = () => {
 };
 
 export const PublicFooter = () => (
-  <footer className="bg-slate-950 border-t border-slate-800 text-slate-400">
+  <footer className="bg-slate-950 text-slate-400">
     <div className="max-w-7xl mx-auto px-6 py-16">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
-        <div className="md:col-span-2">
-          <div className="flex items-center space-x-3 mb-4">
-            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-amber-500 to-yellow-600 flex items-center justify-center">
-              <span className="text-white font-black text-xs">IW</span>
+        <div>
+          <div className="flex items-center space-x-2.5 mb-4">
+            <div className="w-7 h-7 rounded-md bg-amber-500 flex items-center justify-center">
+              <span className="text-white font-black text-[10px]">IW</span>
             </div>
             <div>
-              <p className="text-white font-bold">Infinite Wealth Command Center</p>
-              <p className="text-amber-500 text-xs tracking-widest uppercase">Global · Faith-Based · Premium</p>
+              <p className="text-white font-bold text-sm leading-none">Infinite Wealth</p>
+              <p className="text-amber-500 text-[9px] font-semibold uppercase tracking-widest mt-0.5">Command Center</p>
             </div>
           </div>
-          <p className="text-sm leading-relaxed max-w-sm">
-            A premium, faith-aligned private membership platform serving practitioners, collaborators, and purpose-driven leaders worldwide.
+          <p className="text-sm leading-relaxed text-slate-500">
+            A globally positioned private membership organization providing holistic wealth, wellness, and personal sovereignty services.
           </p>
         </div>
 
         <div>
-          <p className="text-white text-sm font-semibold mb-4 uppercase tracking-wider">Platform</p>
+          <p className="text-white text-sm font-semibold mb-4">Services</p>
           <ul className="space-y-2 text-sm">
-            {NAV_LINKS.map(l => (
-              <li key={l.to}><Link to={l.to} className="hover:text-amber-400 transition-colors">{l.label}</Link></li>
+            {['Energy Healing', 'Wellness Education', 'Personal Development', 'Strategic Wealth'].map(s => (
+              <li key={s}><Link to="/services" className="hover:text-amber-400 transition-colors">{s}</Link></li>
             ))}
           </ul>
         </div>
 
         <div>
-          <p className="text-white text-sm font-semibold mb-4 uppercase tracking-wider">Connect</p>
+          <p className="text-white text-sm font-semibold mb-4">Organization</p>
           <ul className="space-y-2 text-sm">
-            <li><Link to="/contact" className="hover:text-amber-400 transition-colors">Book a Consultation</Link></li>
-            <li><Link to="/membership" className="hover:text-amber-400 transition-colors">Join Membership</Link></li>
-            <li><Link to="/community" className="hover:text-amber-400 transition-colors">Events & Community</Link></li>
-            <li><Link to="/resources" className="hover:text-amber-400 transition-colors">Resource Library</Link></li>
+            {[['About Us', '/about'], ['Membership', '/membership'], ['Community', '/community'], ['Resources', '/resources']].map(([l, p]) => (
+              <li key={p}><Link to={p} className="hover:text-amber-400 transition-colors">{l}</Link></li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <p className="text-white text-sm font-semibold mb-4">Contact</p>
+          <ul className="space-y-2 text-sm">
+            {[['Consultation Request', '/contact'], ['Partnership Inquiry', '/contact'], ['General Contact', '/contact']].map(([l, p]) => (
+              <li key={l}><Link to={p} className="hover:text-amber-400 transition-colors">{l}</Link></li>
+            ))}
           </ul>
         </div>
       </div>
 
-      <div className="border-t border-slate-800 mt-12 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <p className="text-xs">© 2024 Infinite Wealth Command Center. All rights reserved. Private Membership Association.</p>
-        <div className="flex items-center space-x-6 text-xs">
+      <div className="border-t border-slate-800 mt-12 pt-8 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <p className="text-xs text-slate-600">© 2024 Infinite Wealth Command Center. All rights reserved. Private Membership Association.</p>
+        <div className="flex items-center gap-5 text-xs">
           <Link to="/contact" className="hover:text-amber-400 transition-colors">Privacy Policy</Link>
-          <Link to="/contact" className="hover:text-amber-400 transition-colors">Member Terms</Link>
-          <Link to="/contact" className="hover:text-amber-400 transition-colors">PMA Disclosure</Link>
+          <Link to="/contact" className="hover:text-amber-400 transition-colors">Terms of Service</Link>
+          <Link to="/contact" className="hover:text-amber-400 transition-colors">PMA Agreement</Link>
         </div>
       </div>
     </div>
@@ -148,7 +153,7 @@ export const PublicFooter = () => (
 );
 
 const PublicLayout = ({ children }) => (
-  <div className="min-h-screen bg-slate-950 text-white">
+  <div className="min-h-screen bg-white">
     <PublicNav />
     <main>{children}</main>
     <PublicFooter />
