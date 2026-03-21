@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { ArrowLeft, Edit2, Save, X, Loader2, BriefcaseBusiness } from 'lucide-react';
+import { ArrowLeft, Edit2, Save, X, Loader2, Briefcase } from 'lucide-react';
 import { useClient, useUpdateClient } from '../../../hooks/useLeonard';
 
 const STATUS_BADGE = {
@@ -180,7 +180,7 @@ export default function ClientDetail() {
           {/* Holdings summary */}
           <div className="bg-white rounded-xl border border-gray-200 p-5 shadow-sm">
             <h2 className="text-sm font-semibold text-navy-900 mb-3 flex items-center gap-2">
-              <BriefcaseBusiness size={15} /> Portfolio
+              <Briefcase size={15} /> Portfolio
             </h2>
             {holdings_summary?.length ? (
               <div className="space-y-2">

@@ -3,7 +3,7 @@ import { NavLink, Outlet, useNavigate, useLocation, Link } from 'react-router-do
 import {
   LayoutDashboard, Users, TrendingUp, Building2, ShieldAlert,
   FileBarChart, Settings, LogOut, ChevronDown, ChevronRight,
-  Bitcoin, Landmark, BriefcaseBusiness, Menu, X, Shield, Home,
+  Bitcoin, Landmark, Briefcase, Menu, X, Shield, Home,
 } from 'lucide-react';
 import { useAuth } from '../../../hooks/useAuth';
 import clsx from 'clsx';
@@ -14,7 +14,7 @@ const NAV = [
   {
     label: 'Portfolio', icon: TrendingUp,
     children: [
-      { to: '/portal/leonard/portfolio',                   label: 'Overview',       icon: BriefcaseBusiness },
+      { to: '/portal/leonard/portfolio',                   label: 'Overview',       icon: Briefcase },
       { to: '/portal/leonard/portfolio/digital-assets',    label: 'Digital Assets', icon: Landmark },
       { to: '/portal/leonard/portfolio/crypto',            label: 'Crypto',         icon: Bitcoin },
       { to: '/portal/leonard/portfolio/real-estate',       label: 'Real Estate',    icon: Building2 },
