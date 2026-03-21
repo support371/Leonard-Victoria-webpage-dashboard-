@@ -1,0 +1,434 @@
+You are working inside an imported existing project. Do not discard the current workspace. Inspect it first, understand the stack, file structure, routes, components, styling system, and any existing assets, then upgrade it in place into a final production-ready application.
+
+PROJECT NAME
+Infinite Wealth Command Center
+Short label where helpful: IW Command Center
+
+CORE DIRECTIVE
+Turn this imported project into a polished, fully working, premium-grade application with:
+1. a public-facing global website
+2. an internal owner-first command dashboard
+3. role-based portals for Leonard, Victoria, Bernard, and Developer
+4. working routes, layout flow, data scaffolding, and backend-ready structure
+
+This is not a mockup task.
+This is not a partial landing page task.
+This is not a theme refresh only.
+Build the complete application.
+
+==================================================
+1. FIRST ACTION: INSPECT AND PLAN
+==================================================
+
+Before major edits:
+- inspect the current project structure
+- identify framework, package manager, routes, components, assets, styling approach, and data flow
+- preserve useful work
+- remove clutter, dead code, duplicate patterns, and broken placeholders only where needed
+- make the least destructive upgrade path while still producing a final-quality product
+
+Then execute the build.
+
+==================================================
+2. PRODUCT POSITIONING
+==================================================
+
+This product is a globally positioned, premium, faith-based private membership command platform.
+
+The organization serves:
+- members
+- practitioners
+- collaborators
+- strategic partners
+- internal leadership
+
+The public platform should present services around:
+- energy healing
+- wellness education
+- spiritual coaching
+- personal development
+- community
+- faith-based private membership structure
+- intentional financial wellness
+- spiritually aligned real-estate consulting
+
+The internal platform should function like an executive operations command center.
+
+==================================================
+3. OWNER-FIRST RULE
+==================================================
+
+Leonard is the owner and primary command user.
+
+This must be visible in architecture and UX:
+- Leonard portal is the default internal landing environment
+- Leonard must feel like the executive command layer
+- Leonard should not appear as just one equal portal among others
+- add clear executive language such as:
+  - Owner Command
+  - Executive Overview
+  - Strategic Priorities
+  - Decision Queue
+  - System Visibility
+
+All other portals extend from the owner command framework.
+
+==================================================
+4. BRANDING
+==================================================
+
+Use this naming consistently:
+- Infinite Wealth Command Center
+- IW Command Center
+
+Replace any old naming such as:
+- Nexus Dash
+- generic dashboard labels
+- duplicate branding
+
+Brand direction:
+- premium
+- professional
+- executive
+- modern
+- globally credible
+- high-trust
+- strategic
+- spiritually grounded without looking decorative or amateur
+
+==================================================
+5. PUBLIC WEBSITE REQUIREMENTS
+==================================================
+
+Build a complete public-facing website with these pages/sections:
+- Home
+- About
+- Services
+- Membership
+- Community / Events
+- Resources
+- Contact / Consultation
+
+The website must feel globally usable and professionally structured.
+
+The homepage should clearly communicate:
+- who the organization serves
+- what it offers
+- why it is distinct
+- why someone should join, inquire, or engage
+
+Add strong CTA flow:
+- Join Membership
+- Book Consultation
+- Explore Services
+- Access Resources
+- Contact the Team
+
+==================================================
+6. DETAILED SERVICE ARCHITECTURE
+==================================================
+
+The services section must not be vague.
+Create structured service categories:
+
+- Energy Healing Services
+- Wellness Education
+- Personal Development and Coaching
+- Membership Benefits
+- Community and Events
+- Faith-Based Private Membership Structure
+- Strategic Wealth and Real-Estate Alignment
+- Resources
+
+For each category include:
+- strategic overview
+- included offerings
+- ideal audience
+- expected outcomes / value
+- CTA path
+
+The public site must feel like a real service platform, not marketing filler.
+
+==================================================
+7. INTERNAL DASHBOARD REQUIREMENTS
+==================================================
+
+Create a premium internal dashboard shell with:
+- top header
+- sidebar navigation
+- responsive layout
+- role-aware navigation
+- consistent page structure
+- section headers
+- stat blocks
+- status cards
+- reusable UI components
+
+Required shared modules:
+- Overview
+- Review Center
+- Central Repository
+- Live Preview
+- Live Structure
+- Live Status
+- Settings
+- Access Control
+- Activity / Logs
+
+Rename plain “Repository” to:
+- Central Repository
+
+==================================================
+8. ROLE-BASED PORTALS
+==================================================
+
+Build separate portal views for:
+
+A. Leonard Portal
+- Executive Overview
+- Owner Command
+- Strategic Priorities
+- Organization Snapshot
+- Membership and Services Summary
+- Strategic Projects
+- Partnerships and Opportunities
+- Decision Queue
+- Repository Highlights
+- Live Status visibility
+
+B. Victoria Portal
+- Operations Overview
+- Community and Engagement
+- Content and Resources
+- Membership Support
+- Events and Calendar
+- Workflow Tracking
+- Internal Coordination
+
+C. Bernard Portal
+- Governance Overview
+- Legal and Structural Documents
+- PMA/FBO References
+- Agreement Tracking
+- Records Hub
+- Review Queue
+- Approval Flags
+
+D. Developer Portal
+- Build Overview
+- Technical Status
+- Live Preview
+- Live Structure
+- Live Status
+- Component / Module Registry
+- Release Notes
+- Diagnostics
+- Task Queue
+
+Each portal must feel intentionally different, not copied with renamed headers.
+
+==================================================
+9. CORE MODULE BEHAVIOR
+==================================================
+
+A. Review Center
+Do not make this generic stat cards only.
+Make it a workflow module including:
+- pending reviews
+- flagged items
+- approvals queue
+- drafts
+- recent actions
+
+B. Central Repository
+Make this a real structured hub with:
+- category filters
+- search
+- tags
+- ownership labels
+- last updated
+- quick preview/open actions
+- cards and/or table view
+
+Repository categories should include:
+- Manifestos
+- PMA/FBO Documents
+- Membership Documents
+- Service Documents
+- Legal Records
+- Internal Notes
+- Technical References
+- Brand Assets
+
+C. Live Preview
+Make it feel operational:
+- preview area or preview cards
+- environment labels
+- timestamps
+- quick actions
+- responsive layout
+
+D. Live Structure
+Show:
+- app structure
+- modules
+- routes
+- components
+- hierarchy
+Use a clean technical information layout.
+
+E. Live Status
+Show:
+- system health
+- module readiness
+- alerts
+- recent activity
+- deployment-style status patterns
+
+==================================================
+10. MOBILE + RESPONSIVE QUALITY
+==================================================
+
+The app must work well on mobile, tablet, and desktop.
+
+Critical rule:
+Do not leave the dashboard as desktop squeezed into mobile.
+
+Fix:
+- clipped headings
+- oversized typography on narrow screens
+- broken panel widths
+- duplicated header rows
+- awkward split layouts on mobile
+
+Mobile experience must feel intentional and usable.
+
+==================================================
+11. DESIGN SYSTEM
+==================================================
+
+Build or refine a real design system with:
+- premium typography scale
+- spacing system
+- consistent colors
+- status badge patterns
+- card variants
+- layout containers
+- section headers
+- tables/lists
+- quick action components
+- portal landing templates
+
+The app must not look like a generic starter admin panel.
+
+==================================================
+12. FRONTEND IMPLEMENTATION
+==================================================
+
+Complete the frontend as a real application:
+- working pages
+- reusable components
+- navigation flow
+- route layout structure
+- loading states
+- empty states
+- realistic seeded content
+- CTA behavior
+- dashboard interactions
+
+Do not leave dead buttons or static fake UI.
+
+==================================================
+13. BACKEND / APP LOGIC
+==================================================
+
+Implement backend-ready or actual backend structure based on the current stack.
+
+At minimum provide:
+- service layer or API layer
+- role mapping
+- mock or seed data source
+- repository data model
+- portal configuration
+- module data structure
+- auth/access scaffolding
+- page data loading flow
+
+If the project already has backend capability, wire it properly.
+If it lacks backend pieces, scaffold them cleanly within the project.
+
+==================================================
+14. ROUTES, REDIRECTS, ACCESS
+==================================================
+
+Complete route flow end to end.
+
+Required behavior:
+- public site routes work
+- dashboard routes work
+- Leonard portal is the default authenticated destination
+- route guards or access scaffolding exist
+- role-aware navigation is wired
+- redirects are sensible
+- 404 or fallback states are handled
+
+==================================================
+15. DATA + CONTENT
+==================================================
+
+Do not leave blank screens.
+Use realistic seeded data for:
+- repository items
+- review queue items
+- portal stats
+- activity logs
+- module readiness
+- service listings
+- membership data
+- project cards
+- alerts
+- events
+- notes
+
+Content tone should feel professional and globally credible.
+
+==================================================
+16. CLEANUP RULES
+==================================================
+
+While building:
+- standardize naming
+- remove inconsistent labels
+- eliminate broken placeholders
+- keep architecture readable
+- preserve continuity from the imported project
+- improve maintainability
+
+==================================================
+17. FINAL QUALITY BAR
+==================================================
+
+The finished result must feel like:
+- a polished global service website
+- a premium executive command dashboard
+- an owner-first operational platform
+- a real application, not a concept
+
+Success means:
+- Leonard clearly feels like the owner/main command user
+- Victoria, Bernard, and Developer portals are clearly implemented
+- Overview, Review Center, Central Repository, Live Preview, Live Structure, and Live Status all work as real modules
+- public website is detailed, credible, and premium
+- mobile layout is clean
+- routes and app flow are coherent
+- the app is runnable and complete
+
+==================================================
+18. DELIVERABLE EXPECTATION
+==================================================
+
+Finish the application directly in this imported project.
+Do not stop after layout.
+Do not stop after page creation.
+Do not stop after styling.
+Complete the product.
