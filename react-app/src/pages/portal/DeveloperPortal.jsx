@@ -135,7 +135,7 @@ export default function DeveloperPortal() {
   });
 
   const revokeMembership = useMutation({
-    mutationFn: (membershipId) => api.delete(`/api/workspaces/assign/${membershipId}`),
+    mutationFn: ({ membershipId }) => api.delete(`/api/workspaces/assign/${membershipId}`),
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ['dev', 'users'] }),
   });
 
@@ -160,7 +160,7 @@ export default function DeveloperPortal() {
 
   const handleRevoke = (membership) => {
     if (window.confirm(`Revoke access to ${membership.workspace_slug}?`)) {
-      revokeMembership.mutate(membership.workspace_id);
+      revokeMembership.mutate({ membershipId: membership.membership_id });
     }
   };
 

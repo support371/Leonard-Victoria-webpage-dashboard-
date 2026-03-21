@@ -8,7 +8,8 @@ import { useWorkspaceDocuments } from '../../hooks/useWorkspaces';
 import { documentUploadSchema } from '../../validation/schemas';
 import api from '../../lib/api';
 
-const CATEGORIES = ['general', 'legal', 'financial', 'membership', 'event', 'other'];
+// Must match the DB CHECK constraint on documents.category
+const CATEGORIES = ['general', 'legal', 'governance', 'finance', 'operations', 'member'];
 
 function formatBytes(bytes) {
   if (!bytes) return '—';

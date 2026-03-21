@@ -10,11 +10,12 @@ const { createCheckoutSession, handleWebhookEvent } = require('../services/strip
 // on the checkout page. requireAuth is deliberately absent here.
 router.post('/checkout', validate(checkoutSchema), async (req, res, next) => {
   try {
-    const { plan, amount } = req.body;
+    const { plan, amount, workspace_slug } = req.body;
     const session = await createCheckoutSession({
       plan,
       amount,
       customerEmail: null, // collected by Stripe on the checkout page
+      workspaceSlug: workspace_slug || null,
     });
     res.json({ url: session.url, session_id: session.id });
   } catch (err) {

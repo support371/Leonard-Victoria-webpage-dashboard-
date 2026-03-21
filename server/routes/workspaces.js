@@ -51,6 +51,7 @@ router.get('/users', requireAuth, requireRole('super_admin', 'developer'), async
       `SELECT up.*,
               json_agg(
                 json_build_object(
+                  'membership_id', wm.id,
                   'workspace_id', wm.workspace_id,
                   'workspace_slug', w.slug,
                   'workspace_name', w.name,

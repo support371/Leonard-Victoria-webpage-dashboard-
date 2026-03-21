@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { requireAuth } = require('../middleware/auth');
 const db = require('../services/db');
 
-// GET /api/events — public list of upcoming events
+// GET /api/events — public list of upcoming events (global; no workspace filter)
 router.get('/', async (req, res, next) => {
   try {
     const { rows } = await db.query(
@@ -23,6 +23,16 @@ router.post('/:id/register', requireAuth, async (req, res, next) => {
     const eventId = req.params.id;
     const userId = req.user.id;
 
+    // Fetch the event to get its workspace_id
+    const eventResult = await db.query(
+      `SELECT id, workspace_id FROM events WHERE id = $1`,
+      [eventId]
+    );
+    if (!eventResult.rows.length) {
+      return res.status(404).json({ error: 'Event not found.' });
+    }
+    const event = eventResult.rows[0];
+
     // Check existing registration
     const existing = await db.query(
       `SELECT id FROM event_registrations WHERE event_id = $1 AND user_id = $2`,
@@ -32,9 +42,10 @@ router.post('/:id/register', requireAuth, async (req, res, next) => {
       return res.status(409).json({ error: 'Already registered for this event.' });
     }
 
+    // Insert with workspace_id inherited from the event
     await db.query(
-      `INSERT INTO event_registrations (event_id, user_id) VALUES ($1, $2)`,
-      [eventId, userId]
+      `INSERT INTO event_registrations (workspace_id, event_id, user_id) VALUES ($1, $2, $3)`,
+      [event.workspace_id || null, eventId, userId]
     );
     res.json({ message: 'Registration confirmed.' });
   } catch (err) {

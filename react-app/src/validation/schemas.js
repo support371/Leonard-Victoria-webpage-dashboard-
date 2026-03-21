@@ -28,6 +28,8 @@ export const newsletterSchema = z.object({
 
 export const documentUploadSchema = z.object({
   title: z.string().min(2, 'Document title required'),
-  category: z.enum(['legal', 'governance', 'finance', 'operations', 'member']),
+  // Must match the DB CHECK constraint on documents.category
+  category: z.enum(['general', 'legal', 'governance', 'finance', 'operations', 'member']),
   description: z.string().optional(),
+  file: z.any(),
 });

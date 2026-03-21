@@ -19,7 +19,8 @@ const memberApplicationSchema = z.object({
 
 const documentSchema = z.object({
   title: z.string().min(2),
-  category: z.enum(['legal', 'governance', 'finance', 'operations', 'member']),
+  // Must match the DB CHECK constraint on documents.category
+  category: z.enum(['general', 'legal', 'governance', 'finance', 'operations', 'member']),
   description: z.string().optional(),
   storage_path: z.string().optional(),
   filename: z.string().optional(),
@@ -30,6 +31,8 @@ const documentSchema = z.object({
 const checkoutSchema = z.object({
   plan: z.enum(['community', 'stewardship', 'legacy', 'donation']),
   amount: z.number().positive().optional(),
+  // Optional: attribute the payment to a workspace (e.g. for membership checkout from portal)
+  workspace_slug: z.string().optional(),
 });
 
 function validate(schema) {

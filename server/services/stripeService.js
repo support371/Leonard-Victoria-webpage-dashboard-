@@ -9,9 +9,12 @@ const PLAN_PRICE_MAP = {
   legacy: process.env.STRIPE_PRICE_LEGACY,
 };
 
-async function createCheckoutSession({ plan, amount, customerEmail, successUrl, cancelUrl }) {
+async function createCheckoutSession({ plan, amount, customerEmail, successUrl, cancelUrl, workspaceSlug }) {
+  // Build metadata — include workspace_slug if provided so the webhook can attribute the payment
+  const metadata = { plan };
+  if (workspaceSlug) metadata.workspace_slug = workspaceSlug;
+
   if (plan === 'donation') {
-    // One-time donation with custom amount
     const session = await stripe.checkout.sessions.create({
       mode: 'payment',
       customer_email: customerEmail,
@@ -25,7 +28,7 @@ async function createCheckoutSession({ plan, amount, customerEmail, successUrl, 
       }],
       success_url: successUrl || `${process.env.FRONTEND_URL}/donate?success=1`,
       cancel_url: cancelUrl || `${process.env.FRONTEND_URL}/donate`,
-      metadata: { plan: 'donation', amount: amount.toString() },
+      metadata: { ...metadata, amount: amount.toString() },
     });
     return session;
   }
@@ -39,7 +42,7 @@ async function createCheckoutSession({ plan, amount, customerEmail, successUrl, 
     line_items: [{ price: priceId, quantity: 1 }],
     success_url: successUrl || `${process.env.FRONTEND_URL}/portal?checkout=success`,
     cancel_url: cancelUrl || `${process.env.FRONTEND_URL}/membership`,
-    metadata: { plan },
+    metadata,
   });
   return session;
 }
@@ -53,14 +56,25 @@ async function handleWebhookEvent(payload, signature) {
 
   if (event.type === 'checkout.session.completed') {
     const session = event.data.object;
-    const { plan, amount } = session.metadata || {};
+    const { plan, amount, workspace_slug } = session.metadata || {};
+
+    // Resolve workspace_id from slug if present in session metadata
+    let workspaceId = null;
+    if (workspace_slug) {
+      const { rows } = await db.query(
+        `SELECT id FROM workspaces WHERE slug = $1 AND status = 'active'`,
+        [workspace_slug]
+      );
+      if (rows.length) workspaceId = rows[0].id;
+    }
 
     await db.query(
       `INSERT INTO payment_transactions
-        (stripe_session_id, stripe_customer_id, plan, amount_cents, status, customer_email, raw_event)
-       VALUES ($1, $2, $3, $4, 'completed', $5, $6)
+        (workspace_id, stripe_session_id, stripe_customer_id, plan, amount_cents, status, customer_email, raw_event)
+       VALUES ($1, $2, $3, $4, $5, 'completed', $6, $7)
        ON CONFLICT (stripe_session_id) DO NOTHING`,
       [
+        workspaceId,
         session.id,
         session.customer || null,
         plan || null,
