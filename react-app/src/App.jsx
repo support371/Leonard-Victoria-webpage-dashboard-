@@ -1,15 +1,16 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Outlet, useParams } from 'react-router-dom';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { queryClient } from './lib/queryClient';
 
 // Layout components
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
-import PortalSidebar from './components/layout/PortalSidebar';
+import WorkspaceSidebar from './components/layout/WorkspaceSidebar';
 
 // Guards
 import ProtectedRoute from './guards/ProtectedRoute';
+import WorkspaceRoute from './guards/WorkspaceRoute';
 
 // Public pages
 import Home from './pages/public/Home';
@@ -30,10 +31,10 @@ import Disclosures from './pages/public/Disclosures';
 import Login from './pages/auth/Login';
 
 // Portal pages
-import PortalDashboard from './pages/portal/Dashboard';
-import Members from './pages/portal/Members';
-import Documents from './pages/portal/Documents';
-import Admin from './pages/portal/Admin';
+import WorkspaceList from './pages/portal/WorkspaceList';
+import WorkspaceDashboard from './pages/portal/WorkspaceDashboard';
+import WorkspaceDocuments from './pages/portal/WorkspaceDocuments';
+import DeveloperPortal from './pages/portal/DeveloperPortal';
 
 // Public layout wrapper
 function PublicLayout() {
@@ -48,15 +49,27 @@ function PublicLayout() {
   );
 }
 
-// Portal layout wrapper
-function PortalLayout() {
+/**
+ * Workspace-scoped layout. Reads :workspaceSlug from params,
+ * fetches the workspace list to resolve name + role for the sidebar.
+ */
+function WorkspaceLayout() {
+  const { workspaceSlug } = useParams();
+
+  // Pull workspace list from the React Query cache (already fetched by WorkspaceRoute guard)
+  const workspace = queryClient
+    .getQueryData(['workspaces', 'mine'])
+    ?.find((w) => w.slug === workspaceSlug);
+
   return (
     <div className="flex h-screen bg-gray-50 overflow-hidden">
-      <PortalSidebar />
-      <main className="flex-1 overflow-y-auto p-8">
-        <div className="max-w-6xl mx-auto">
-          <Outlet />
-        </div>
+      <WorkspaceSidebar
+        workspaceSlug={workspaceSlug}
+        workspaceName={workspace?.name}
+        workspaceRole={workspace?.workspace_role}
+      />
+      <main className="flex-1 overflow-y-auto flex flex-col">
+        <Outlet />
       </main>
     </div>
   );
@@ -67,7 +80,7 @@ export default function App() {
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <Routes>
-          {/* Public routes */}
+          {/* ── Public routes ── */}
           <Route element={<PublicLayout />}>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
@@ -84,46 +97,47 @@ export default function App() {
             <Route path="/disclosures" element={<Disclosures />} />
           </Route>
 
-          {/* Auth routes (no layout wrapper) */}
+          {/* ── Auth ── */}
           <Route path="/login" element={<Login />} />
 
-          {/* Portal routes — protected */}
+          {/* ── Portal entry — workspace picker ── */}
           <Route
             path="/portal"
             element={
               <ProtectedRoute>
-                <PortalLayout />
+                <WorkspaceList />
+              </ProtectedRoute>
+            }
+          />
+
+          {/* ── Developer / Admin portal ── */}
+          <Route
+            path="/portal/developer"
+            element={
+              <ProtectedRoute requiredRoles={['developer', 'super_admin']}>
+                <DeveloperPortal />
+              </ProtectedRoute>
+            }
+          />
+
+          {/* ── Per-workspace portal (:workspaceSlug = leonard | victoria | bernard | …) ── */}
+          <Route
+            path="/portal/:workspaceSlug"
+            element={
+              <ProtectedRoute>
+                <WorkspaceRoute>
+                  <WorkspaceLayout />
+                </WorkspaceRoute>
               </ProtectedRoute>
             }
           >
-            <Route index element={<PortalDashboard />} />
-            <Route
-              path="members"
-              element={
-                <ProtectedRoute requiredRoles={['admin', 'operations']}>
-                  <Members />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="documents"
-              element={
-                <ProtectedRoute requiredRoles={['admin', 'operations', 'legal']}>
-                  <Documents />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="admin"
-              element={
-                <ProtectedRoute requiredRoles={['admin']}>
-                  <Admin />
-                </ProtectedRoute>
-              }
-            />
+            {/* Default child — redirect to dashboard */}
+            <Route index element={<WorkspaceDashboard />} />
+            <Route path="dashboard" element={<WorkspaceDashboard />} />
+            <Route path="documents" element={<WorkspaceDocuments />} />
           </Route>
 
-          {/* 404 fallback */}
+          {/* ── 404 ── */}
           <Route
             path="*"
             element={

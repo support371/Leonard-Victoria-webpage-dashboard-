@@ -1,8 +1,9 @@
 const { supabaseAdmin } = require('../services/supabaseAdmin');
+const db = require('../services/db');
 
 /**
- * Require a valid Supabase JWT.
- * Attaches req.user on success.
+ * Verify Supabase JWT. Attaches req.user (Supabase user object).
+ * Also loads req.userProfile from user_profiles and sets req.globalRole.
  */
 async function requireAuth(req, res, next) {
   const authHeader = req.headers.authorization;
@@ -10,24 +11,44 @@ async function requireAuth(req, res, next) {
     return res.status(401).json({ error: 'Missing authorization header' });
   }
   const token = authHeader.slice(7);
+
   const { data: { user }, error } = await supabaseAdmin.auth.getUser(token);
   if (error || !user) {
     return res.status(401).json({ error: 'Invalid or expired token' });
   }
+
   req.user = user;
+
+  // Load DB-managed profile for role resolution
+  try {
+    const { rows } = await db.query(
+      'SELECT * FROM user_profiles WHERE id = $1',
+      [user.id]
+    );
+    if (rows.length) {
+      req.userProfile = rows[0];
+      req.globalRole = rows[0].global_role;
+    } else {
+      // Fall back to Supabase user_metadata role if no DB profile exists yet
+      req.globalRole = user.user_metadata?.role || 'member';
+    }
+  } catch (_) {
+    // DB unavailable — degrade gracefully to metadata role
+    req.globalRole = user.user_metadata?.role || 'member';
+  }
+
   next();
 }
 
 /**
- * Require one of the specified roles.
+ * Require one of the specified global roles.
  * Must be used after requireAuth.
- * @param {...string} roles
  */
 function requireRole(...roles) {
   return (req, res, next) => {
-    const userRole = req.user?.user_metadata?.role;
-    const isAdmin = userRole === 'admin';
-    if (!isAdmin && !roles.includes(userRole)) {
+    const role = req.globalRole;
+    const isPrivileged = ['super_admin', 'developer'].includes(role);
+    if (!isPrivileged && !roles.includes(role)) {
       return res.status(403).json({ error: 'Insufficient permissions' });
     }
     next();

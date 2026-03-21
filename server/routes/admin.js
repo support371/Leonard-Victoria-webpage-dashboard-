@@ -3,23 +3,35 @@ const { requireAuth, requireRole } = require('../middleware/auth');
 const { createAuditLog } = require('../services/auditLog');
 const db = require('../services/db');
 
-// All admin routes require auth + admin role
-router.use(requireAuth, requireRole('admin'));
+// All admin routes require auth + admin/super_admin/developer role
+router.use(requireAuth, requireRole('admin', 'super_admin', 'developer'));
 
-// GET /api/admin/applications — list applications by status
+// GET /api/admin/applications — list applications by status, optionally scoped to workspace
 router.get('/applications', async (req, res, next) => {
   try {
-    const { status } = req.query;
+    const { status, workspace_id } = req.query;
     const params = [];
-    let where = '';
+    const conditions = [];
+
     if (status) {
       params.push(status);
-      where = `WHERE status = $1`;
+      conditions.push(`a.status = $${params.length}`);
     }
+    if (workspace_id) {
+      params.push(workspace_id);
+      conditions.push(`a.workspace_id = $${params.length}`);
+    }
+
+    const where = conditions.length ? `WHERE ${conditions.join(' AND ')}` : '';
+
     const { rows } = await db.query(
-      `SELECT id, first_name, last_name, email, membership_tier, motivation, referral, status, created_at
-       FROM applications ${where}
-       ORDER BY created_at DESC`,
+      `SELECT a.id, a.workspace_id, w.slug AS workspace_slug,
+              a.first_name, a.last_name, a.email, a.membership_tier,
+              a.motivation, a.referral, a.status, a.created_at
+       FROM applications a
+       LEFT JOIN workspaces w ON w.id = a.workspace_id
+       ${where}
+       ORDER BY a.created_at DESC`,
       params
     );
     res.json({ applications: rows });
@@ -33,7 +45,6 @@ router.post('/applications/:id/approve', async (req, res, next) => {
   try {
     const { id } = req.params;
 
-    // Fetch the application
     const { rows } = await db.query(`SELECT * FROM applications WHERE id = $1`, [id]);
     if (!rows.length) return res.status(404).json({ error: 'Application not found' });
 
@@ -42,22 +53,24 @@ router.post('/applications/:id/approve', async (req, res, next) => {
       return res.status(409).json({ error: `Application is already ${app.status}` });
     }
 
-    // Update status — reviewed_by stores the Supabase auth UUID
     await db.query(
       `UPDATE applications SET status = 'approved', reviewed_at = NOW(), reviewed_by = $2 WHERE id = $1`,
       [id, req.user.id]
     );
 
-    // Create member record
+    // Create member record, workspace-scoped if the application had a workspace
     await db.query(
-      `INSERT INTO members (first_name, last_name, email, membership_tier, status)
-       VALUES ($1, $2, $3, $4, 'active')
-       ON CONFLICT (email) DO UPDATE SET membership_tier = EXCLUDED.membership_tier, status = 'active'`,
-      [app.first_name, app.last_name, app.email, app.membership_tier]
+      `INSERT INTO members (workspace_id, first_name, last_name, email, membership_tier, status)
+       VALUES ($1, $2, $3, $4, $5, 'active')
+       ON CONFLICT (email) DO UPDATE
+         SET membership_tier = EXCLUDED.membership_tier,
+             workspace_id    = EXCLUDED.workspace_id,
+             status          = 'active'`,
+      [app.workspace_id || null, app.first_name, app.last_name, app.email, app.membership_tier]
     );
 
-    // Audit log
     await createAuditLog({
+      workspace_id: app.workspace_id || null,
       action: 'application.approved',
       actor_id: req.user.id,
       actor_email: req.user.email,
@@ -92,6 +105,7 @@ router.post('/applications/:id/reject', async (req, res, next) => {
     );
 
     await createAuditLog({
+      workspace_id: app.workspace_id || null,
       action: 'application.rejected',
       actor_id: req.user.id,
       actor_email: req.user.email,
@@ -106,14 +120,25 @@ router.post('/applications/:id/reject', async (req, res, next) => {
   }
 });
 
-// GET /api/admin/audit-log
+// GET /api/admin/audit-log — optionally filter by workspace
 router.get('/audit-log', async (req, res, next) => {
   try {
+    const { workspace_id } = req.query;
+    const params = [];
+    let where = '';
+    if (workspace_id) {
+      params.push(workspace_id);
+      where = 'WHERE workspace_id = $1';
+    }
+
     const { rows } = await db.query(
-      `SELECT id, action, actor_id, actor_email, resource_type, resource_id, metadata, created_at
+      `SELECT id, workspace_id, action, actor_id, actor_email,
+              resource_type, resource_id, metadata, created_at
        FROM audit_logs
+       ${where}
        ORDER BY created_at DESC
-       LIMIT 100`
+       LIMIT 100`,
+      params
     );
     res.json({ logs: rows });
   } catch (err) {

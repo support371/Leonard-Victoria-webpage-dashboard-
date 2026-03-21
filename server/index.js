@@ -16,6 +16,8 @@ const eventsRouter = require('./routes/events');
 const paymentsRouter = require('./routes/payments');
 const dashboardRouter = require('./routes/dashboard');
 const adminRouter = require('./routes/admin');
+const workspacesRouter = require('./routes/workspaces');
+const portalRouter = require('./routes/portal');
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -74,6 +76,8 @@ app.use('/api/events', eventsRouter);
 app.use('/api/payments', paymentsRouter);
 app.use('/api/dashboard', dashboardRouter);
 app.use('/api/admin', adminRouter);
+app.use('/api/workspaces', workspacesRouter);
+app.use('/api/portal', portalRouter);
 
 // 404
 app.use((_req, res) => res.status(404).json({ error: 'Route not found' }));
