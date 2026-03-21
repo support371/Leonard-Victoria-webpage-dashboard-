@@ -6,7 +6,7 @@ import { useAuth } from '../../hooks/useAuth';
 const NAV_ITEMS = [
   { label: 'Dashboard', href: '/portal', icon: LayoutDashboard, end: true },
   { label: 'Members', href: '/portal/members', icon: Users, roles: ['admin', 'operations'] },
-  { label: 'Documents', href: '/portal/documents', icon: FileText, roles: ['admin', 'legal', 'operations', 'member'] },
+  { label: 'Documents', href: '/portal/documents', icon: FileText, roles: ['admin', 'legal', 'operations'] },
   { label: 'Admin', href: '/portal/admin', icon: Shield, roles: ['admin'] },
 ];
 

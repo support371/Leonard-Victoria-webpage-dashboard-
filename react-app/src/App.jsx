@@ -105,7 +105,14 @@ export default function App() {
                 </ProtectedRoute>
               }
             />
-            <Route path="documents" element={<Documents />} />
+            <Route
+              path="documents"
+              element={
+                <ProtectedRoute requiredRoles={['admin', 'operations', 'legal']}>
+                  <Documents />
+                </ProtectedRoute>
+              }
+            />
             <Route
               path="admin"
               element={

@@ -42,8 +42,11 @@ router.post('/applications/:id/approve', async (req, res, next) => {
       return res.status(409).json({ error: `Application is already ${app.status}` });
     }
 
-    // Update status
-    await db.query(`UPDATE applications SET status = 'approved', reviewed_at = NOW() WHERE id = $1`, [id]);
+    // Update status — reviewed_by stores the Supabase auth UUID
+    await db.query(
+      `UPDATE applications SET status = 'approved', reviewed_at = NOW(), reviewed_by = $2 WHERE id = $1`,
+      [id, req.user.id]
+    );
 
     // Create member record
     await db.query(
@@ -84,8 +87,8 @@ router.post('/applications/:id/reject', async (req, res, next) => {
     }
 
     await db.query(
-      `UPDATE applications SET status = 'rejected', reviewed_at = NOW(), rejection_reason = $2 WHERE id = $1`,
-      [id, reason || null]
+      `UPDATE applications SET status = 'rejected', reviewed_at = NOW(), reviewed_by = $2, rejection_reason = $3 WHERE id = $1`,
+      [id, req.user.id, reason || null]
     );
 
     await createAuditLog({

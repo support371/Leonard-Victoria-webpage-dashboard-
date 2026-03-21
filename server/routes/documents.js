@@ -6,13 +6,14 @@ const db = require('../services/db');
 
 const BUCKET = process.env.SUPABASE_STORAGE_BUCKET || 'documents';
 
-// GET /api/documents
-router.get('/', requireAuth, async (req, res, next) => {
+// GET /api/documents — restricted to admin, operations, legal
+router.get('/', requireAuth, requireRole('admin', 'operations', 'legal'), async (req, res, next) => {
   try {
     const { rows } = await db.query(
+      // uploader_id stores the Supabase auth UUID (users.auth_id), not users.id
       `SELECT d.*, u.email as uploaded_by
        FROM documents d
-       LEFT JOIN users u ON d.uploader_id = u.id
+       LEFT JOIN users u ON u.auth_id = d.uploader_id
        ORDER BY d.created_at DESC`
     );
     res.json({ documents: rows });
@@ -21,8 +22,8 @@ router.get('/', requireAuth, async (req, res, next) => {
   }
 });
 
-// POST /api/documents/upload-url — get signed URL for direct upload
-router.post('/upload-url', requireAuth, async (req, res, next) => {
+// POST /api/documents/upload-url — restricted to admin, operations, legal
+router.post('/upload-url', requireAuth, requireRole('admin', 'operations', 'legal'), async (req, res, next) => {
   try {
     const { filename, content_type, category } = req.body;
     if (!filename) return res.status(400).json({ error: 'filename required' });
@@ -42,8 +43,8 @@ router.post('/upload-url', requireAuth, async (req, res, next) => {
   }
 });
 
-// POST /api/documents — save document record after upload
-router.post('/', requireAuth, validate(documentSchema), async (req, res, next) => {
+// POST /api/documents — restricted to admin, operations, legal
+router.post('/', requireAuth, requireRole('admin', 'operations', 'legal'), validate(documentSchema), async (req, res, next) => {
   try {
     const { title, category, description, storage_path, filename, size_bytes, content_type } = req.body;
 

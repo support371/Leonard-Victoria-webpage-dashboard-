@@ -53,7 +53,8 @@ CREATE TABLE IF NOT EXISTS applications (
     CHECK (status IN ('pending', 'approved', 'rejected')),
   rejection_reason TEXT,
   reviewed_at      TIMESTAMPTZ,
-  reviewed_by      UUID REFERENCES users(id) ON DELETE SET NULL,
+  -- reviewed_by stores the Supabase auth UUID (auth.users.id = users.auth_id)
+  reviewed_by      UUID REFERENCES users(auth_id) ON DELETE SET NULL,
   created_at       TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   updated_at       TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
@@ -85,7 +86,8 @@ CREATE TABLE IF NOT EXISTS documents (
   size_bytes    BIGINT,
   content_type  TEXT,
   public_url    TEXT,
-  uploader_id   UUID REFERENCES users(id) ON DELETE SET NULL,
+  -- uploader_id stores the Supabase auth UUID (auth.users.id = users.auth_id)
+  uploader_id   UUID REFERENCES users(auth_id) ON DELETE SET NULL,
   created_at    TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   updated_at    TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
@@ -112,7 +114,8 @@ CREATE TABLE IF NOT EXISTS events (
 CREATE TABLE IF NOT EXISTS event_registrations (
   id         UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
   event_id   UUID NOT NULL REFERENCES events(id) ON DELETE CASCADE,
-  user_id    UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  -- user_id stores the Supabase auth UUID (auth.users.id = users.auth_id)
+  user_id    UUID NOT NULL REFERENCES users(auth_id) ON DELETE CASCADE,
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   UNIQUE (event_id, user_id)
 );

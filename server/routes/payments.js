@@ -5,13 +5,16 @@ const { validate, checkoutSchema } = require('../validation/schemas');
 const { createCheckoutSession, handleWebhookEvent } = require('../services/stripeService');
 
 // POST /api/payments/checkout — create Stripe checkout session
+// This endpoint is intentionally guest-safe: donations are initiated from the public
+// /donate page without requiring authentication. Stripe will collect the email
+// on the checkout page. requireAuth is deliberately absent here.
 router.post('/checkout', validate(checkoutSchema), async (req, res, next) => {
   try {
     const { plan, amount } = req.body;
     const session = await createCheckoutSession({
       plan,
       amount,
-      customerEmail: req.user?.email,
+      customerEmail: null, // collected by Stripe on the checkout page
     });
     res.json({ url: session.url, session_id: session.id });
   } catch (err) {
