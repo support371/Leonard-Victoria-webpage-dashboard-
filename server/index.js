@@ -19,6 +19,8 @@ const adminRouter = require('./routes/admin');
 const workspacesRouter = require('./routes/workspaces');
 const portalRouter = require('./routes/portal');
 const leonardRouter = require('./routes/leonard');
+const victoriaRouter = require('./routes/victoria');
+const bernardRouter = require('./routes/bernard');
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -78,8 +80,10 @@ app.use('/api/payments', paymentsRouter);
 app.use('/api/dashboard', dashboardRouter);
 app.use('/api/admin', adminRouter);
 app.use('/api/workspaces', workspacesRouter);
-// Leonard enterprise portal — must be mounted BEFORE the generic portal router
+// Dedicated workspace portals — must be mounted BEFORE the generic portal router
 app.use('/api/portal/leonard', leonardRouter);
+app.use('/api/portal/victoria', victoriaRouter);
+app.use('/api/portal/bernard', bernardRouter);
 app.use('/api/portal', portalRouter);
 
 // 404

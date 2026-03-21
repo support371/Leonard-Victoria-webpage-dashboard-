@@ -12,6 +12,25 @@ import WorkspaceSidebar from './components/layout/WorkspaceSidebar';
 import ProtectedRoute from './guards/ProtectedRoute';
 import WorkspaceRoute from './guards/WorkspaceRoute';
 import LeonardPortalGuard from './guards/LeonardPortalGuard';
+import VictoriaPortalGuard from './guards/VictoriaPortalGuard';
+import BernardPortalGuard from './guards/BernardPortalGuard';
+
+// Victoria portal pages
+import VictoriaLayout from './pages/portal/victoria/VictoriaLayout';
+import VictoriaDashboard from './pages/portal/victoria/VictoriaDashboard';
+import Meetings from './pages/portal/victoria/Meetings';
+import Resolutions from './pages/portal/victoria/Resolutions';
+import Committees from './pages/portal/victoria/Committees';
+import VictoriaDocuments from './pages/portal/victoria/VictoriaDocuments';
+import VictoriaSettings from './pages/portal/victoria/VictoriaSettings';
+
+// Bernard portal pages
+import BernardLayout from './pages/portal/bernard/BernardLayout';
+import BernardDashboard from './pages/portal/bernard/BernardDashboard';
+import BernardPrograms from './pages/portal/bernard/Programs';
+import BernardEvents from './pages/portal/bernard/BernardEvents';
+import BernardMembers from './pages/portal/bernard/BernardMembers';
+import BernardSettings from './pages/portal/bernard/BernardSettings';
 
 // Leonard portal pages
 import LeonardLayout from './pages/portal/leonard/LeonardLayout';
@@ -137,6 +156,45 @@ export default function App() {
               </ProtectedRoute>
             }
           />
+
+          {/* ── Victoria Governance Portal ── */}
+          <Route
+            path="/portal/victoria"
+            element={
+              <ProtectedRoute>
+                <VictoriaPortalGuard>
+                  <VictoriaLayout />
+                </VictoriaPortalGuard>
+              </ProtectedRoute>
+            }
+          >
+            <Route index element={<VictoriaDashboard />} />
+            <Route path="dashboard"    element={<VictoriaDashboard />} />
+            <Route path="meetings"     element={<Meetings />} />
+            <Route path="resolutions"  element={<Resolutions />} />
+            <Route path="committees"   element={<Committees />} />
+            <Route path="documents"    element={<VictoriaDocuments />} />
+            <Route path="settings"     element={<VictoriaSettings />} />
+          </Route>
+
+          {/* ── Bernard Programs Portal ── */}
+          <Route
+            path="/portal/bernard"
+            element={
+              <ProtectedRoute>
+                <BernardPortalGuard>
+                  <BernardLayout />
+                </BernardPortalGuard>
+              </ProtectedRoute>
+            }
+          >
+            <Route index element={<BernardDashboard />} />
+            <Route path="dashboard" element={<BernardDashboard />} />
+            <Route path="programs"  element={<BernardPrograms />} />
+            <Route path="events"    element={<BernardEvents />} />
+            <Route path="members"   element={<BernardMembers />} />
+            <Route path="settings"  element={<BernardSettings />} />
+          </Route>
 
           {/* ── Leonard Enterprise Portal ── */}
           <Route

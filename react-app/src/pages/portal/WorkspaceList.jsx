@@ -66,9 +66,15 @@ export default function WorkspaceList() {
             return (
               <button
                 key={ws.id}
-                onClick={() =>
-                  navigate(isDeveloper ? '/portal/developer' : `/portal/${ws.slug}`)
-                }
+                onClick={() => {
+                  // Dedicated portals for named workspaces
+                  const dedicated = ['leonard', 'victoria', 'bernard', 'developer'];
+                  if (dedicated.includes(ws.slug)) {
+                    navigate(ws.slug === 'developer' ? '/portal/developer' : `/portal/${ws.slug}`);
+                  } else {
+                    navigate(`/portal/${ws.slug}`);
+                  }
+                }}
                 className="group relative flex items-center gap-4 rounded-xl bg-white border border-gray-200 px-6 py-5 text-left shadow-sm hover:shadow-md hover:border-navy-400 transition-all"
               >
                 <div className={`h-12 w-12 rounded-lg flex items-center justify-center text-lg font-bold ${colorClass}`}>

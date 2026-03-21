@@ -87,6 +87,25 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Impact Stats */}
+      <section className="py-16 bg-navy-900 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+            {[
+              { value: '500+', label: 'Active Members' },
+              { value: '12',   label: 'Active Programs' },
+              { value: '$2M+', label: 'Member Contributions' },
+              { value: '3',    label: 'Governance Workspaces' },
+            ].map(({ value, label }) => (
+              <div key={label}>
+                <div className="text-3xl sm:text-4xl font-bold text-white mb-1">{value}</div>
+                <div className="text-sm text-navy-300">{label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Membership CTA */}
       <section className="py-20 bg-gray-50 border-y border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

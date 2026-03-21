@@ -45,7 +45,7 @@ export default function Resources() {
           Governance minutes, financial statements, and member-restricted materials are available in the member portal.
         </p>
         <Link
-          to="/portal/documents"
+          to="/portal"
           className="inline-block px-6 py-2.5 bg-navy-800 text-white rounded-md text-sm font-medium hover:bg-navy-700 transition-colors"
         >
           Access Member Portal

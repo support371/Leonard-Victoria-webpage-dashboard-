@@ -47,7 +47,7 @@ export default function Contact() {
               <MapPin className="w-5 h-5 text-navy-700" />
             </div>
             <h3 className="font-semibold text-gray-900 mb-1">Mailing Address</h3>
-            <p className="text-gray-600 text-sm">Leonard &amp; Victoria<br />P.O. Box [Address]<br />United States</p>
+            <p className="text-gray-600 text-sm">Leonard &amp; Victoria<br />200 Civic Center Plaza, Suite 400<br />Washington, DC 20001</p>
           </div>
         </div>
 
