@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route, Outlet, useParams } from 'react-router-dom';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { queryClient } from './lib/queryClient';
+import { AuthProvider } from './contexts/AuthContext';
 
 // Layout components
 import Navbar from './components/layout/Navbar';
@@ -66,6 +67,7 @@ import Disclosures from './pages/public/Disclosures';
 
 // Auth pages
 import Login from './pages/auth/Login';
+import AuthCallback from './pages/auth/AuthCallback';
 
 // Portal pages
 import WorkspaceList from './pages/portal/WorkspaceList';
@@ -115,6 +117,7 @@ function WorkspaceLayout() {
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
+      <AuthProvider>
       <BrowserRouter>
         <Routes>
           {/* ── Public routes ── */}
@@ -136,6 +139,7 @@ export default function App() {
 
           {/* ── Auth ── */}
           <Route path="/login" element={<Login />} />
+          <Route path="/auth/callback" element={<AuthCallback />} />
 
           {/* ── Portal entry — workspace picker ── */}
           <Route
@@ -259,6 +263,7 @@ export default function App() {
           />
         </Routes>
       </BrowserRouter>
+      </AuthProvider>
     </QueryClientProvider>
   );
 }
