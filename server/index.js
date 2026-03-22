@@ -32,7 +32,9 @@ app.use(helmet());
 const allowedOrigins = (process.env.CORS_ORIGINS || 'http://localhost:5173').split(',');
 app.use(cors({
   origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
+    // Allow if no origin (like mobile apps or curl) or if it is in the allowed list
+    // or if it ends with .vercel.app for preview deployments.
+    if (!origin || allowedOrigins.includes(origin) || origin.endsWith('.vercel.app')) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
@@ -68,7 +70,7 @@ app.use((req, res, next) => {
 app.use('/api/', rateLimiter);
 
 // Health check
-app.get('/health', (_req, res) => res.json({ status: 'ok', timestamp: new Date().toISOString() }));
+app.get('/api/health', (_req, res) => res.json({ status: 'ok', timestamp: new Date().toISOString() }));
 
 // API routes
 app.use('/api/members', membersRouter);
