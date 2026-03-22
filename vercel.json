@@ -1,11 +1,4 @@
 {
   "buildCommand": "cd Leonard-Victoria-webpage-dashboard--feat-build-react-webpage-8929662002850160816/react-app && npm install && npm run build",
-  "outputDirectory": "Leonard-Victoria-webpage-dashboard--feat-build-react-webpage-8929662002850160816/react-app/dist",
-  "framework": "vite",
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
-  ]
+  "outputDirectory": "Leonard-Victoria-webpage-dashboard--feat-build-react-webpage-8929662002850160816/react-app/dist"
 }

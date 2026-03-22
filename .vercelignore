@@ -1,0 +1,7 @@
+# Ignore everything except the app directory
+node_modules/
+.git/
+.local/
+.replit
+scripts/
+README.md
