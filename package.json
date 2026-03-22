@@ -5,6 +5,9 @@
     "react-app",
     "server"
   ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "build": "npm run build --workspace=react-app"
   }
