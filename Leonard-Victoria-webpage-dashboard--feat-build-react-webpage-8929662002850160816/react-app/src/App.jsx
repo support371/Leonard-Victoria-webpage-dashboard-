@@ -11,6 +11,7 @@ import Membership from './pages/public/Membership';
 import Community from './pages/public/Community';
 import Resources from './pages/public/Resources';
 import Contact from './pages/public/Contact';
+import PortalPreview from './pages/public/PortalPreview';
 
 import LeonardPortal from './pages/dashboard/LeonardPortal';
 import VictoriaPortal from './pages/dashboard/VictoriaPortal';
@@ -46,6 +47,7 @@ const App = () => {
         <Route path="/community" element={<PublicLayout><Community /></PublicLayout>} />
         <Route path="/resources" element={<PublicLayout><Resources /></PublicLayout>} />
         <Route path="/contact" element={<PublicLayout><Contact /></PublicLayout>} />
+        <Route path="/portals" element={<PublicLayout><PortalPreview /></PublicLayout>} />
 
         <Route path="/dashboard" element={<Navigate to="/dashboard/leonard" replace />} />
 
