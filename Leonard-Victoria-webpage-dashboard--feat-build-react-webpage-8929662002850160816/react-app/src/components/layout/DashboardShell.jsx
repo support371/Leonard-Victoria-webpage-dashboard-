@@ -104,18 +104,24 @@ const Sidebar = ({ collapsed, setCollapsed, currentRole, setCurrentRole }) => {
 
       <div className="p-3 border-t border-slate-800 space-y-2">
         {!collapsed && (
-          <div>
-            <p className="text-[10px] font-semibold text-slate-500 uppercase tracking-widest px-1 mb-2">Active Role</p>
-            <select
-              value={currentRole}
-              onChange={e => setCurrentRole(e.target.value)}
-              className="w-full bg-slate-800 border border-slate-700 text-slate-300 text-xs rounded-lg px-2 py-2 focus:outline-none focus:border-amber-500"
-            >
-              {Object.entries(ROLE_CONFIG).map(([key, val]) => (
-                <option key={key} value={key}>{val.label}</option>
-              ))}
-            </select>
-          </div>
+          <>
+            <div className="bg-gradient-to-r from-amber-500/15 to-transparent border border-amber-500/20 rounded-lg p-2.5 mb-2">
+              <p className="text-[9px] font-bold text-amber-400 uppercase tracking-widest mb-0.5">Powered by</p>
+              <p className="text-[10px] text-amber-200 leading-tight">Leonard M. Diana</p>
+            </div>
+            <div>
+              <p className="text-[10px] font-semibold text-slate-500 uppercase tracking-widest px-1 mb-2">Active Role</p>
+              <select
+                value={currentRole}
+                onChange={e => setCurrentRole(e.target.value)}
+                className="w-full bg-slate-800 border border-slate-700 text-slate-300 text-xs rounded-lg px-2 py-2 focus:outline-none focus:border-amber-500"
+              >
+                {Object.entries(ROLE_CONFIG).map(([key, val]) => (
+                  <option key={key} value={key}>{val.label}</option>
+                ))}
+              </select>
+            </div>
+          </>
         )}
         <Link
           to="/"
