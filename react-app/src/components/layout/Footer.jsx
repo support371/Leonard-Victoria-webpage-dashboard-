@@ -78,9 +78,25 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-navy-800 flex flex-col sm:flex-row items-center justify-between text-sm text-navy-400">
-          <p>&copy; {new Date().getFullYear()} Leonard &amp; Victoria. All rights reserved.</p>
-          <p className="mt-2 sm:mt-0">Built with purpose.</p>
+        <div className="mt-12 pt-10 border-t border-navy-800">
+          <div className="bg-gradient-to-r from-amber-500/10 to-transparent border border-amber-500/20 rounded-xl p-6 mb-8">
+            <div className="flex items-center gap-3 mb-2">
+              <div className="w-8 h-8 rounded-lg bg-amber-500/20 border border-amber-500/30 flex items-center justify-center">
+                <span className="text-amber-400 font-black text-sm">★</span>
+              </div>
+              <p className="text-amber-400 font-bold text-sm">POWERED &amp; SPONSORED BY</p>
+            </div>
+            <p className="text-white font-black text-lg mb-1">Leonard M. Diana</p>
+            <p className="text-amber-200 text-sm leading-relaxed">Founder &amp; Owner — Infinite Abundance of Health, Wealth &amp; Happiness in Living Life @300%</p>
+          </div>
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-navy-400">
+            <p>&copy; {new Date().getFullYear()} Infinite Wealth Command Center. All rights reserved. Private Membership Association.</p>
+            <div className="flex items-center gap-5">
+              <Link to="/privacy" className="hover:text-amber-400 transition-colors">Privacy Policy</Link>
+              <Link to="/terms" className="hover:text-amber-400 transition-colors">Terms of Service</Link>
+              <Link to="/disclosures" className="hover:text-amber-400 transition-colors">PMA Agreement</Link>
+            </div>
+          </div>
         </div>
       </div>
     </footer>
