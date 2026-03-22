@@ -57,6 +57,13 @@ export default function PortalSidebar() {
         ))}
       </nav>
 
+      <div className="px-3 pb-2">
+        <div className="bg-gradient-to-r from-amber-500/15 to-transparent border border-amber-500/20 rounded-lg p-2.5">
+          <p className="text-[9px] font-bold text-amber-400 uppercase tracking-widest mb-0.5">Powered by</p>
+          <p className="text-[10px] text-amber-200 leading-tight">Leonard M. Diana</p>
+        </div>
+      </div>
+
       <div className="p-3 border-t border-navy-800 space-y-1">
         <NavLink
           to="/"

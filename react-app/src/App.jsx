@@ -64,6 +64,7 @@ import Resources from './pages/public/Resources';
 import Privacy from './pages/public/Privacy';
 import Terms from './pages/public/Terms';
 import Disclosures from './pages/public/Disclosures';
+import PortalPreview from './pages/public/PortalPreview';
 
 // Auth pages
 import Login from './pages/auth/Login';
@@ -143,6 +144,7 @@ export default function App() {
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/disclosures" element={<Disclosures />} />
+            <Route path="/portals" element={<PortalPreview />} />
           </Route>
 
           {/* ── Auth ── */}
