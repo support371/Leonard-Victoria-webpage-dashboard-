@@ -27,7 +27,13 @@ export const PublicNav = () => {
   useEffect(() => { setOpen(false); }, [location]);
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-slate-950/98 backdrop-blur-md shadow-lg shadow-black/20' : 'bg-slate-950'}`}>
+    <>
+      <div className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-amber-600 via-amber-500 to-amber-600 py-2.5 px-6 text-center">
+        <p className="text-white text-xs sm:text-sm font-bold tracking-wide">
+          From Infinite Abundance of Health & Wealth to Endless Happiness in Living Life @300%
+        </p>
+      </div>
+      <header className={`fixed top-10 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-slate-950/98 backdrop-blur-md shadow-lg shadow-black/20' : 'bg-slate-950'}`}>
       <div className="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
         <Link to="/" className="flex items-center space-x-2.5">
           <div className="w-7 h-7 rounded-md bg-amber-500 flex items-center justify-center flex-shrink-0">
@@ -90,6 +96,7 @@ export const PublicNav = () => {
         </div>
       )}
     </header>
+    </>
   );
 };
 
