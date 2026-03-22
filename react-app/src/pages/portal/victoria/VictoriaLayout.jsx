@@ -128,9 +128,9 @@ export default function VictoriaLayout() {
       )}
 
       {/* Main content */}
-      <div className="flex-1 flex flex-col overflow-hidden">
+      <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
         {/* Topbar */}
-        <header className="bg-white border-b border-gray-200 px-4 py-3 flex items-center gap-4 flex-shrink-0 h-14">
+        <header className="bg-white border-b border-gray-200 px-4 flex items-center gap-4 flex-shrink-0 h-14">
           <button className="lg:hidden" onClick={() => setSidebarOpen(true)}>
             <Menu size={20} className="text-gray-500" />
           </button>

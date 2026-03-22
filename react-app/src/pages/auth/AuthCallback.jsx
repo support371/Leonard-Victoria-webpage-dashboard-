@@ -18,10 +18,14 @@ export default function AuthCallback() {
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
       if (event === 'SIGNED_IN' && session) {
         setStatus('success');
-        setTimeout(() => navigate('/portal', { replace: true }), 1500);
+        const role = session.user?.user_metadata?.role;
+        const target = (role === 'admin' || role === 'super_admin') ? '/portal/leonard' : '/portal';
+        setTimeout(() => navigate(target, { replace: true }), 1500);
       } else if (event === 'USER_UPDATED' && session) {
         setStatus('success');
-        setTimeout(() => navigate('/portal', { replace: true }), 1500);
+        const role = session.user?.user_metadata?.role;
+        const target = (role === 'admin' || role === 'super_admin') ? '/portal/leonard' : '/portal';
+        setTimeout(() => navigate(target, { replace: true }), 1500);
       } else if (event === 'SIGNED_OUT' || event === 'TOKEN_REFRESHED') {
         setStatus('error');
         setMessage('Authentication failed. The link may have expired.');

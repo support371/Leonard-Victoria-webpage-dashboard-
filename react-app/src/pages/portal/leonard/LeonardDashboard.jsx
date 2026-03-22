@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import {
   Users, TrendingUp, Building2, ShieldAlert, DollarSign,
   Activity, AlertTriangle, CheckCircle, ArrowRight, Loader2,
-  Bitcoin, BarChart3, FileText, ChevronRight, Shield,
+  Bitcoin, BarChart3, FileText, ChevronRight, Shield, Zap,
 } from 'lucide-react';
 import { useLeonardDashboard } from '../../../hooks/useLeonard';
 
@@ -104,6 +104,38 @@ function KpiChangeIndicator({ dir, change }) {
 
 // ─── Component ────────────────────────────────────────────────────────────────
 
+function ExecutiveOverviewSection() {
+  return (
+    <div className="bg-navy-950 rounded-3xl p-8 text-white relative overflow-hidden shadow-2xl border border-white/5">
+      <div className="absolute top-0 right-0 p-12 opacity-10">
+        <Shield size={200} />
+      </div>
+      <div className="relative z-10">
+        <h2 className="text-xl font-bold mb-6 flex items-center gap-3">
+          <Zap className="text-blue-400" /> Strategic Executive Overview
+        </h2>
+        <div className="grid md:grid-cols-3 gap-12">
+          <div>
+            <p className="text-xs font-bold text-navy-400 uppercase tracking-widest mb-2">Portfolio Health</p>
+            <p className="text-3xl font-bold">Nominal</p>
+            <p className="text-xs text-blue-400 mt-2 flex items-center gap-1"><TrendingUp size={12} /> 2.4% yield increase</p>
+          </div>
+          <div>
+            <p className="text-xs font-bold text-navy-400 uppercase tracking-widest mb-2">Network Security</p>
+            <p className="text-3xl font-bold text-emerald-400">Hardened</p>
+            <p className="text-xs text-navy-400 mt-2">Zero active incidents</p>
+          </div>
+          <div>
+            <p className="text-xs font-bold text-navy-400 uppercase tracking-widest mb-2">Community Growth</p>
+            <p className="text-3xl font-bold">+18.5%</p>
+            <p className="text-xs text-navy-400 mt-2">12 pending approvals</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function LeonardDashboard() {
   const { data, isLoading } = useLeonardDashboard?.() || {};
 
@@ -112,7 +144,7 @@ export default function LeonardDashboard() {
   });
 
   return (
-    <div className="p-6 lg:p-8 space-y-6 max-w-7xl mx-auto">
+    <div className="p-6 lg:p-8 space-y-8 max-w-7xl mx-auto">
 
       {/* ── Page Header ─────────────────────────────────────────────────── */}
       <div className="flex items-start justify-between flex-wrap gap-3">
@@ -122,14 +154,22 @@ export default function LeonardDashboard() {
             <ChevronRight size={12} />
             <span className="text-navy-700 font-semibold">Executive Overview</span>
           </div>
-          <h1 className="text-2xl font-bold text-navy-900">Executive Overview</h1>
-          <p className="text-sm text-gray-400 mt-0.5">{today}</p>
+          <h1 className="text-2xl font-bold text-navy-900 leading-tight">Command Center</h1>
+          <p className="text-sm text-gray-400 mt-0.5 font-medium">{today}</p>
         </div>
-        <div className="flex items-center gap-2 px-3 py-1.5 bg-green-50 border border-green-200 rounded-lg">
-          <CheckCircle size={14} className="text-green-600" />
-          <span className="text-xs font-semibold text-green-700">Threat Level: Low</span>
+        <div className="flex items-center gap-3">
+          <button className="px-4 py-2 bg-white border border-slate-200 rounded-xl text-sm font-bold text-navy-900 hover:bg-slate-50 transition-colors shadow-sm">
+            Generate Report
+          </button>
+          <div className="flex items-center gap-2 px-3 py-1.5 bg-green-50 border border-green-200 rounded-lg shadow-sm">
+            <CheckCircle size={14} className="text-green-600" />
+            <span className="text-xs font-bold text-green-700">Threat Level: Low</span>
+          </div>
         </div>
       </div>
+
+      {/* ── Strategic Executive Overview ──────────────────────────────────── */}
+      <ExecutiveOverviewSection />
 
       {/* ── KPI Row (8 cards) ────────────────────────────────────────────── */}
       <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 gap-4">

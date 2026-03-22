@@ -16,6 +16,8 @@ const eventsRouter = require('./routes/events');
 const paymentsRouter = require('./routes/payments');
 const dashboardRouter = require('./routes/dashboard');
 const adminRouter = require('./routes/admin');
+const communityRouter = require('./routes/community');
+const adminCommunityRouter = require('./routes/admin/community');
 const workspacesRouter = require('./routes/workspaces');
 const portalRouter = require('./routes/portal');
 const leonardRouter = require('./routes/leonard');
@@ -32,7 +34,11 @@ app.use(helmet());
 const allowedOrigins = (process.env.CORS_ORIGINS || 'http://localhost:5173').split(',');
 app.use(cors({
   origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
+    if (
+      !origin ||
+      allowedOrigins.includes(origin) ||
+      origin.endsWith('.vercel.app')
+    ) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
@@ -68,7 +74,7 @@ app.use((req, res, next) => {
 app.use('/api/', rateLimiter);
 
 // Health check
-app.get('/health', (_req, res) => res.json({ status: 'ok', timestamp: new Date().toISOString() }));
+app.get('/api/health', (_req, res) => res.json({ status: 'ok', timestamp: new Date().toISOString() }));
 
 // API routes
 app.use('/api/members', membersRouter);
@@ -79,6 +85,8 @@ app.use('/api/events', eventsRouter);
 app.use('/api/payments', paymentsRouter);
 app.use('/api/dashboard', dashboardRouter);
 app.use('/api/admin', adminRouter);
+app.use('/api/admin/community', adminCommunityRouter);
+app.use('/api/community', communityRouter);
 app.use('/api/workspaces', workspacesRouter);
 // Dedicated workspace portals — must be mounted BEFORE the generic portal router
 app.use('/api/portal/leonard', leonardRouter);
