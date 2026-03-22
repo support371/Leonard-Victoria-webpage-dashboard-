@@ -1,0 +1,56 @@
+Primary source repository:
+https://github.com/support371/Leonard-Victoria-webpage-dashboard-.git
+
+Current live app reference:
+https://f458bd97-177f-4979-b6b9-c540e027a823-00-2gaesegwfqbli.worf.replit.dev/
+
+Reference design/spec source:
+https://lovable.dev/projects/7e5b0fcc-200c-451c-a927-f3676fa6837e
+
+You are working inside the existing Replit project and must upgrade the current live app in place into the final production-ready version.
+
+Execution rules:
+- use the GitHub repository as the primary codebase and source of truth
+- use the current live Replit app as the running implementation target
+- use the Lovable project as the design and structure reference
+- do not replace the project with a disconnected prototype
+- inspect the stack, routes, components, styles, and current app behavior first
+- preserve useful existing code and refactor in place where needed
+- keep the app running throughout iteration whenever possible
+
+Product name:
+Infinite Wealth Command Center
+Short label:
+IW Command Center
+
+Core requirements:
+- Leonard must be the owner and primary command user
+- Leonard portal must be the default authenticated landing experience
+- build separate portals for Leonard, Victoria, Bernard, and Developer
+- complete these modules as real working dashboard sections:
+  - Overview
+  - Review Center
+  - Central Repository
+  - Live Preview
+  - Live Structure
+  - Live Status
+- complete the public-facing website as a premium global service platform
+- wire routes, redirects, seeded data, service layers, and backend-ready structure
+- improve module realism and dashboard logic
+- fix mobile layout clipping, oversized typography, weak panel behavior, and duplicated header issues
+- rename Repository to Central Repository everywhere
+- redesign Review Center into a true workflow module
+- ensure all role portals are visibly distinct and intentionally designed
+- do not stop at styling; complete the app as a runnable system
+
+Immediate priorities:
+1. inspect the live app and current codebase
+2. fix mobile layout and header duplication first
+3. make Leonard visually and structurally the owner command center
+4. complete role portal separation
+5. finish routing/navigation coherence
+6. complete core modules with realistic seeded data
+7. polish public website and internal dashboard to final quality
+
+Final standard:
+The result must feel like a finished executive command platform plus a polished global service website, not a mockup, partial dashboard, or themed template.

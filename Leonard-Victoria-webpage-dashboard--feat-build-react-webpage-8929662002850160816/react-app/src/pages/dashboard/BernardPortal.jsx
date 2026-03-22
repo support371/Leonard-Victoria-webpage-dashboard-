@@ -140,7 +140,7 @@ const BernardPortal = () => {
               ))}
               <div className="px-4 py-2">
                 <button onClick={() => navigate('/dashboard/repository')} className="text-xs font-semibold text-indigo-600 flex items-center gap-1">
-                  Full Repository <ArrowRight className="w-3 h-3" />
+                  Central Repository <ArrowRight className="w-3 h-3" />
                 </button>
               </div>
             </Card>
