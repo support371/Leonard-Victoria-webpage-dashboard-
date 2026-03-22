@@ -1,0 +1,11 @@
+{
+  "name": "leonard-victoria-monorepo",
+  "private": true,
+  "workspaces": [
+    "react-app",
+    "server"
+  ],
+  "scripts": {
+    "build": "npm run build --workspace=react-app"
+  }
+}

@@ -92,8 +92,10 @@ app.use((_req, res) => res.status(404).json({ error: 'Route not found' }));
 // Error handler
 app.use(errorHandler);
 
-app.listen(PORT, () => {
-  console.log(`Leonard & Victoria API listening on port ${PORT}`);
-});
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Leonard & Victoria API listening on port ${PORT}`);
+  });
+}
 
 module.exports = app;
