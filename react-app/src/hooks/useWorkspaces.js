@@ -10,7 +10,7 @@ export function useWorkspaces() {
   return useQuery({
     queryKey: ['workspaces', 'mine'],
     queryFn: async () => {
-      const { data } = await api.get('/api/workspaces/mine');
+      const { data } = await api.get('/workspaces/mine');
       return data.workspaces;
     },
   });
@@ -23,7 +23,7 @@ export function useWorkspaceDashboard(slug) {
   return useQuery({
     queryKey: ['workspace', slug, 'dashboard'],
     queryFn: async () => {
-      const { data } = await api.get(`/api/portal/${slug}/dashboard`);
+      const { data } = await api.get(`/portal/${slug}/dashboard`);
       return data;
     },
     enabled: !!slug,
@@ -37,7 +37,7 @@ export function useWorkspaceDocuments(slug) {
   return useQuery({
     queryKey: ['workspace', slug, 'documents'],
     queryFn: async () => {
-      const { data } = await api.get(`/api/portal/${slug}/documents`);
+      const { data } = await api.get(`/portal/${slug}/documents`);
       return data.documents;
     },
     enabled: !!slug,
