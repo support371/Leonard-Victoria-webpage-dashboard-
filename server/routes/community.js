@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { db } = require('../services/db');
+const db = require('../services/db');
 
 // Get featured content for Community Hub
 router.get('/hub', async (req, res, next) => {
@@ -8,7 +8,7 @@ router.get('/hub', async (req, res, next) => {
     // This would typically join with featured_placements
     // For now, return active/featured content
     const profiles = await db.query(
-      `SELECT p.*, u.full_name, u.email
+      `SELECT p.*, u.full_name
        FROM community_profiles p
        JOIN user_profiles u ON p.user_id = u.id
        WHERE p.status = 'active'
@@ -65,7 +65,7 @@ router.get('/profiles', async (req, res, next) => {
 router.get('/profiles/:id', async (req, res, next) => {
   try {
     const profile = await db.query(
-      `SELECT p.*, u.full_name, u.email
+      `SELECT p.*, u.full_name
        FROM community_profiles p
        JOIN user_profiles u ON p.user_id = u.id
        WHERE p.id = $1 AND p.status = 'active'`,

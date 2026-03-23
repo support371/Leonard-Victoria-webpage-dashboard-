@@ -37,7 +37,8 @@ app.use(cors({
     if (
       !origin ||
       allowedOrigins.includes(origin) ||
-      origin.endsWith('.vercel.app')
+      origin.endsWith('-support371s-projects.vercel.app') ||
+      origin.endsWith('-admin-25521151s-projects.vercel.app')
     ) {
       callback(null, true);
     } else {
@@ -84,8 +85,8 @@ app.use('/api/documents', documentsRouter);
 app.use('/api/events', eventsRouter);
 app.use('/api/payments', paymentsRouter);
 app.use('/api/dashboard', dashboardRouter);
-app.use('/api/admin', adminRouter);
 app.use('/api/admin/community', adminCommunityRouter);
+app.use('/api/admin', adminRouter);
 app.use('/api/community', communityRouter);
 app.use('/api/workspaces', workspacesRouter);
 // Dedicated workspace portals — must be mounted BEFORE the generic portal router

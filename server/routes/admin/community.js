@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const { db } = require('../../services/db');
+const db = require('../../services/db');
 const { requireAuth, requireRole } = require('../../middleware/auth');
 
 // All routes require admin or operations roles
 router.use(requireAuth);
-router.use(requireRole(['admin', 'operations', 'super_admin']));
+router.use(requireRole('admin', 'operations', 'super_admin'));
 
 // List Pending Profiles/Services for Review Center
 router.get('/review/pending', async (req, res, next) => {
