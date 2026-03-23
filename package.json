@@ -1,5 +1,6 @@
 {
   "name": "leonard-victoria-monorepo",
+  "version": "1.0.0",
   "private": true,
   "workspaces": [
     "react-app",
