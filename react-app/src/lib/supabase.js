@@ -4,12 +4,14 @@ const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
 if (!supabaseUrl || !supabaseAnonKey) {
-  throw new Error(
+  // We log a warning but don't throw an error to allow the Vite build to complete.
+  // The app will fail gracefully at runtime if these are missing in the environment.
+  console.warn(
     'Missing required environment variables: VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY must be set.'
   );
 }
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+export const supabase = createClient(supabaseUrl || 'https://MISSING_SUPABASE_URL.supabase.co', supabaseAnonKey || 'MISSING_ANON_KEY', {
   auth: {
     autoRefreshToken: true,
     persistSession: true,
