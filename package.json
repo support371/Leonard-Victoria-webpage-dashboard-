@@ -6,6 +6,7 @@
     "server"
   ],
   "scripts": {
-    "build": "npm run build --workspace=react-app"
+    "build": "npm run build --workspace=react-app",
+    "dev": "npm run dev --workspace=react-app & npm run dev --workspace=server"
   }
 }
