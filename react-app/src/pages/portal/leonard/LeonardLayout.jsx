@@ -124,9 +124,9 @@ function Sidebar({ onClose }) {
           )}
         </div>
         <p className="text-[10px] uppercase tracking-widest text-navy-500 font-semibold mb-0.5">Portal</p>
-        <h1 className="text-sm font-bold text-white">Leonard Portal</h1>
+        <h1 className="text-sm font-bold text-white">Owner Command</h1>
         <span className="mt-1.5 inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-navy-800 text-blue-400 uppercase tracking-wide">
-          Enterprise
+          Strategic Overview
         </span>
       </div>
 
@@ -190,17 +190,18 @@ export default function LeonardLayout() {
       {/* Main content */}
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
         {/* Topbar */}
-        <header className="h-14 flex-shrink-0 bg-white border-b border-gray-200 flex items-center px-4 gap-4">
+        <header className="h-14 flex-shrink-0 bg-white border-b border-gray-200 flex items-center px-4 gap-4 sticky top-0 z-30 shadow-sm">
           <button
             onClick={() => setMobileSidebarOpen(true)}
-            className="lg:hidden text-gray-500 hover:text-gray-700"
+            className="lg:hidden text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-navy-100 rounded p-1"
+            aria-label="Open menu"
           >
             <Menu size={20} />
           </button>
 
           {/* Breadcrumbs */}
-          <nav className="flex items-center gap-1.5 text-sm text-gray-500 min-w-0">
-            <span className="text-navy-700 font-semibold whitespace-nowrap">Leonard</span>
+          <nav className="flex items-center gap-1.5 text-sm text-gray-500 min-w-0 overflow-hidden">
+            <span className="text-navy-700 font-semibold whitespace-nowrap flex-shrink-0">Owner Command</span>
             {crumbs.map((crumb, i) => (
               <span key={i} className="flex items-center gap-1.5 truncate">
                 <span className="text-gray-300">/</span>

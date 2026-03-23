@@ -184,14 +184,14 @@ export default function CentralRepository() {
 
       {/* Search & Filter Row */}
       <div className="flex flex-col sm:flex-row gap-3">
-        <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+        <div className="relative flex-1 group">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 group-focus-within:text-navy-500 transition-colors" />
           <input
             type="text"
-            placeholder="Search documents..."
+            placeholder="Search Central Repository (Title, Category, Portal)..."
             value={search}
             onChange={e => setSearch(e.target.value)}
-            className="w-full pl-9 pr-4 py-2.5 text-sm border border-slate-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-navy-300 focus:border-navy-400"
+            className="w-full pl-9 pr-4 py-2.5 text-sm border border-slate-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-navy-300 focus:border-navy-400 transition-all shadow-sm"
           />
         </div>
         <div className="relative">

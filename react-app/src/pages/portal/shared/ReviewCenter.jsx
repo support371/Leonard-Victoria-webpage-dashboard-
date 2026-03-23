@@ -233,10 +233,11 @@ const PRIORITY_CONFIG = {
 };
 
 const STATUS_CONFIG = {
-  pending:     { label: 'Pending',     cls: 'text-amber-700 bg-amber-50 border-amber-200',  icon: Clock },
-  in_progress: { label: 'In Progress', cls: 'text-blue-700 bg-blue-50 border-blue-200',     icon: ArrowRight },
-  completed:   { label: 'Completed',   cls: 'text-green-700 bg-green-50 border-green-200',  icon: CheckCircle },
-  flagged:     { label: 'Flagged',     cls: 'text-red-700 bg-red-50 border-red-200',        icon: Flag },
+  pending:     { label: 'Pending Review', cls: 'text-amber-700 bg-amber-50 border-amber-200',  icon: Clock },
+  in_progress: { label: 'In Progress',    cls: 'text-blue-700 bg-blue-50 border-blue-200',     icon: ArrowRight },
+  completed:   { label: 'Approved',       cls: 'text-green-700 bg-green-50 border-green-200',  icon: CheckCircle },
+  flagged:     { label: 'Flagged / Action Required', cls: 'text-red-700 bg-red-50 border-red-200', icon: Flag },
+  draft:       { label: 'Draft',          cls: 'text-slate-500 bg-slate-50 border-slate-200',  icon: FileText },
 };
 
 function ReviewCard({ item }) {

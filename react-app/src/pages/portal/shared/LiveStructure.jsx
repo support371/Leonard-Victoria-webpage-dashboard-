@@ -111,7 +111,7 @@ const ROUTE_TREE = [
 const MODULES = [
   { name: 'Auth',       version: 'v2.1.0', status: 'operational', deps: ['Supabase', 'JWT'], health: 'green', desc: 'Authentication and session management' },
   { name: 'Portals',    version: 'v3.0.0', status: 'operational', deps: ['React Router', 'Auth'], health: 'green', desc: 'Role-gated portal routing and layouts' },
-  { name: 'Repository', version: 'v1.2.0', status: 'operational', deps: ['Supabase Storage'], health: 'green', desc: 'Document and asset management system' },
+  { name: 'Central Repository', version: 'v1.2.0', status: 'operational', deps: ['Supabase Storage'], health: 'green', desc: 'Document and asset management system' },
   { name: 'Preview',    version: 'v1.0.1', status: 'operational', deps: ['CI/CD Pipeline'], health: 'green', desc: 'Live environment preview and deploy tracking' },
   { name: 'API',        version: 'v2.3.0', status: 'operational', deps: ['Supabase', 'Edge Fns'], health: 'green', desc: 'REST and edge function API layer' },
   { name: 'Database',   version: 'v15.3',  status: 'operational', deps: ['PostgreSQL'], health: 'green', desc: 'Relational data layer via Supabase' },

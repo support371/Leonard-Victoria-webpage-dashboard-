@@ -83,7 +83,7 @@ const QUICK_LINKS = [
   { label: 'Live Preview',    url: '/',                        icon: Globe      },
   { label: 'Live Structure',  url: '/portal/developer',        icon: BarChart3  },
   { label: 'Live Status',     url: '/portal/developer',        icon: Activity   },
-  { label: 'Repository',      url: 'https://github.com',       icon: GitBranch  },
+  { label: 'Central Repository',      url: 'https://github.com',       icon: GitBranch  },
 ];
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
@@ -268,7 +268,7 @@ export default function DeveloperPortal() {
               <span className="text-navy-700 font-semibold">Developer Portal</span>
             </div>
             <h1 className="text-2xl font-bold text-navy-900">Developer Portal — Technical Command</h1>
-            <p className="text-sm text-gray-500 mt-1">Manage users, workspace access, builds, and configuration.</p>
+            <p className="text-sm text-gray-500 mt-1">Infrastructure management, system status, and technical governance.</p>
           </div>
           <div className={`flex items-center gap-2 px-3 py-1.5 rounded-lg border ${
             allServicesUp

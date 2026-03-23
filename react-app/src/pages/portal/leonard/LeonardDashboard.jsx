@@ -79,7 +79,7 @@ const QUICK_ACTIONS = [
   { label: 'Real Estate', path: '/portal/leonard/real-estate', icon: Building2,  color: 'border-emerald-200 hover:border-emerald-400 hover:bg-emerald-50' },
   { label: 'Security',    path: '/portal/leonard/security',    icon: ShieldAlert,color: 'border-orange-200 hover:border-orange-400 hover:bg-orange-50' },
   { label: 'Reports',     path: '/portal/leonard/reports',     icon: FileText,   color: 'border-gray-200 hover:border-gray-400 hover:bg-gray-50'      },
-  { label: 'Repository',  path: '/portal/developer',           icon: BarChart3,  color: 'border-navy-200 hover:border-navy-400 hover:bg-slate-50'     },
+  { label: 'Central Repository',  path: '/portal/developer',           icon: BarChart3,  color: 'border-navy-200 hover:border-navy-400 hover:bg-slate-50'     },
 ];
 
 const ACTIVITY_TYPE_COLOR = {

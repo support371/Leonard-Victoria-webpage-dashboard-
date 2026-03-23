@@ -85,7 +85,7 @@ const PORTALS = [
 // ─── Quick Stats ──────────────────────────────────────────────────────────────
 const QUICK_STATS = [
   { label: 'Total Portfolio Value', value: '$2.4M',    change: '+12.3%',  dir: 'up',   icon: TrendingUp,  iconBg: 'bg-blue-50',    iconColor: 'text-blue-600' },
-  { label: 'Repository Documents',  value: '22',       change: '+3 new',  dir: 'up',   icon: FileText,    iconBg: 'bg-navy-50',    iconColor: 'text-navy-600' },
+  { label: 'Central Repository Documents',  value: '22',       change: '+3 new',  dir: 'up',   icon: FileText,    iconBg: 'bg-navy-50',    iconColor: 'text-navy-600' },
   { label: 'Pending Reviews',        value: '8',        change: 'Urgent: 3', dir: 'warn', icon: ClipboardList, iconBg: 'bg-amber-50', iconColor: 'text-amber-600' },
   { label: 'Active Members',         value: '145',      change: '+6 this month', dir: 'up', icon: Users,  iconBg: 'bg-teal-50',    iconColor: 'text-teal-600' },
   { label: 'Community Programs',     value: '8',        change: '3 launching soon', dir: 'neutral', icon: BarChart3, iconBg: 'bg-green-50', iconColor: 'text-green-600' },
@@ -209,7 +209,7 @@ export default function CommandOverview() {
               <ClipboardList className="w-3.5 h-3.5" /> 8 Pending Reviews
             </span>
             <span className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full bg-white/10 text-white border border-white/20">
-              <FileText className="w-3.5 h-3.5" /> 22 Repository Docs
+              <FileText className="w-3.5 h-3.5" /> 22 Central Repository Docs
             </span>
           </div>
         </div>
