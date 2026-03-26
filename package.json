@@ -1,10 +1,14 @@
 {
   "name": "leonard-victoria-monorepo",
+  "version": "1.0.0",
   "private": true,
   "workspaces": [
     "react-app",
     "server"
   ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "build": "npm run build --workspace=react-app",
     "dev": "npm run dev --workspace=react-app & npm run dev --workspace=server"

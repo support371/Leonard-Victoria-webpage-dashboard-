@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { NavLink, Outlet, useNavigate, useLocation, Link } from 'react-router-dom';
 import {
   LayoutDashboard, Users, TrendingUp, Building2, ShieldAlert,
-  FileBarChart, Settings, LogOut, ChevronDown, ChevronRight,
+  BarChart3, Settings, LogOut, ChevronDown, ChevronRight,
   Bitcoin, Landmark, Briefcase, Menu, X, Shield, Home,
 } from 'lucide-react';
 import { useAuth } from '../../../hooks/useAuth';
@@ -29,7 +29,7 @@ const NAV = [
       { to: '/portal/leonard/security/assets',    label: 'Assets',    icon: ShieldAlert },
     ],
   },
-  { to: '/portal/leonard/reports',  label: 'Reports',  icon: FileBarChart },
+  { to: '/portal/leonard/reports',  label: 'Reports',  icon: BarChart3 },
   { to: '/portal/leonard/settings', label: 'Settings', icon: Settings },
 ];
 

@@ -40,6 +40,9 @@ app.use(cors({
       origin.endsWith('-support371s-projects.vercel.app') ||
       origin.endsWith('-admin-25521151s-projects.vercel.app')
     ) {
+    // Allow if no origin (like mobile apps or curl) or if it is in the allowed list
+    // or if it ends with .vercel.app for preview deployments.
+    if (!origin || allowedOrigins.includes(origin) || origin.endsWith('.vercel.app')) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
