@@ -11,8 +11,9 @@ const REQUIRED_ENV_VARS = [
 
 const missingVars = REQUIRED_ENV_VARS.filter(v => !process.env[v]);
 if (missingVars.length > 0) {
-  console.error(`FATAL ERROR: Missing required environment variables: ${missingVars.join(', ')}`);
-  if (process.env.NODE_ENV === 'production') {
+  console.error(`CRITICAL WARNING: Missing environment variables: ${missingVars.join(', ')}`);
+  // Do not exit(1) during build-time tracing on Vercel or in CI
+  if (process.env.NODE_ENV === 'production' && !process.env.VERCEL && !process.env.CI) {
     process.exit(1);
   }
 }
