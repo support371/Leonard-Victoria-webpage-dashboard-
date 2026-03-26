@@ -5,7 +5,8 @@ const REQUIRED_ENV_VARS = [
   'DATABASE_URL',
   'SUPABASE_URL',
   'SUPABASE_SERVICE_ROLE_KEY',
-  'STRIPE_SECRET_KEY'
+  'STRIPE_SECRET_KEY',
+  'STRIPE_WEBHOOK_SECRET'
 ];
 
 const missingVars = REQUIRED_ENV_VARS.filter(v => !process.env[v]);

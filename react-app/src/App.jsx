@@ -169,6 +169,13 @@ export default function App() {
           <Route path="/portal/status"      element={<ProtectedRoute><LiveStatus /></ProtectedRoute>} />
           <Route path="/portal/review"      element={<ProtectedRoute><ReviewCenter /></ProtectedRoute>} />
 
+          {/* Legacy redirects for naming normalization */}
+          <Route path="/portal/shared/repository" element={<ProtectedRoute><CentralRepository /></ProtectedRoute>} />
+          <Route path="/portal/shared/live-preview" element={<ProtectedRoute><LivePreview /></ProtectedRoute>} />
+          <Route path="/portal/shared/review-center" element={<ProtectedRoute><ReviewCenter /></ProtectedRoute>} />
+          <Route path="/portal/shared/live-status" element={<ProtectedRoute><LiveStatus /></ProtectedRoute>} />
+          <Route path="/portal/shared/live-structure" element={<ProtectedRoute><LiveStructure /></ProtectedRoute>} />
+
           {/* ── Developer / Admin portal ── */}
           <Route
             path="/portal/developer"
