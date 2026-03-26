@@ -1,7 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import api from '../lib/api';
 
-const BASE = '/api/portal/victoria';
+const BASE = '/portal/victoria';
 
 // Dashboard
 export function useVictoriaDashboard() {

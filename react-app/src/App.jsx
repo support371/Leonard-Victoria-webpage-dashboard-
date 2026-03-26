@@ -60,6 +60,9 @@ import Governance from './pages/public/Governance';
 import Contact from './pages/public/Contact';
 import Donate from './pages/public/Donate';
 import Events from './pages/public/Events';
+import CommunityHub from './pages/public/CommunityHub';
+import ServiceDirectory from './pages/public/ServiceDirectory';
+import ProfileDetail from './pages/public/ProfileDetail';
 import Resources from './pages/public/Resources';
 import Privacy from './pages/public/Privacy';
 import Terms from './pages/public/Terms';
@@ -83,6 +86,7 @@ import LivePreview from './pages/portal/shared/LivePreview';
 import LiveStructure from './pages/portal/shared/LiveStructure';
 import LiveStatus from './pages/portal/shared/LiveStatus';
 import ReviewCenter from './pages/portal/shared/ReviewCenter';
+import CommunityManagement from './pages/portal/shared/CommunityManagement';
 
 // Public layout wrapper
 function PublicLayout() {
@@ -140,6 +144,10 @@ export default function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/donate" element={<Donate />} />
             <Route path="/events" element={<Events />} />
+            <Route path="/community" element={<CommunityHub />} />
+            <Route path="/community/hub" element={<CommunityHub />} />
+            <Route path="/community/services" element={<ServiceDirectory />} />
+            <Route path="/community/profiles/:id" element={<ProfileDetail />} />
             <Route path="/resources" element={<Resources />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/terms" element={<Terms />} />
@@ -168,6 +176,7 @@ export default function App() {
           <Route path="/portal/structure"   element={<ProtectedRoute><LiveStructure /></ProtectedRoute>} />
           <Route path="/portal/status"      element={<ProtectedRoute><LiveStatus /></ProtectedRoute>} />
           <Route path="/portal/review"      element={<ProtectedRoute><ReviewCenter /></ProtectedRoute>} />
+          <Route path="/portal/community"   element={<ProtectedRoute><CommunityManagement /></ProtectedRoute>} />
 
           {/* ── Developer / Admin portal ── */}
           <Route

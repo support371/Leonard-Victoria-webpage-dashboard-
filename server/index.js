@@ -16,6 +16,8 @@ const eventsRouter = require('./routes/events');
 const paymentsRouter = require('./routes/payments');
 const dashboardRouter = require('./routes/dashboard');
 const adminRouter = require('./routes/admin');
+const communityRouter = require('./routes/community');
+const adminCommunityRouter = require('./routes/admin/community');
 const workspacesRouter = require('./routes/workspaces');
 const portalRouter = require('./routes/portal');
 const leonardRouter = require('./routes/leonard');
@@ -32,6 +34,12 @@ app.use(helmet());
 const allowedOrigins = (process.env.CORS_ORIGINS || 'http://localhost:5173').split(',');
 app.use(cors({
   origin: (origin, callback) => {
+    if (
+      !origin ||
+      allowedOrigins.includes(origin) ||
+      origin.endsWith('-support371s-projects.vercel.app') ||
+      origin.endsWith('-admin-25521151s-projects.vercel.app')
+    ) {
     // Allow if no origin (like mobile apps or curl) or if it is in the allowed list
     // or if it ends with .vercel.app for preview deployments.
     if (!origin || allowedOrigins.includes(origin) || origin.endsWith('.vercel.app')) {
@@ -80,7 +88,9 @@ app.use('/api/documents', documentsRouter);
 app.use('/api/events', eventsRouter);
 app.use('/api/payments', paymentsRouter);
 app.use('/api/dashboard', dashboardRouter);
+app.use('/api/admin/community', adminCommunityRouter);
 app.use('/api/admin', adminRouter);
+app.use('/api/community', communityRouter);
 app.use('/api/workspaces', workspacesRouter);
 // Dedicated workspace portals — must be mounted BEFORE the generic portal router
 app.use('/api/portal/leonard', leonardRouter);

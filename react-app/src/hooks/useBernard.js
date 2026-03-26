@@ -1,7 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import api from '../lib/api';
 
-const BASE = '/api/portal/bernard';
+const BASE = '/portal/bernard';
 
 // Dashboard
 export function useBernardDashboard() {
