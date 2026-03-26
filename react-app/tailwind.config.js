@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+import tailwindAnimate from 'tailwindcss-animate';
+
 export default {
   content: [
     "./index.html",
@@ -18,11 +20,12 @@ export default {
           700: '#2e4a84',
           800: '#1e3a5f',
           900: '#132848',
+          950: '#0a1628',
         },
       },
     },
   },
   plugins: [
-    require('tailwindcss-animate')
+    tailwindAnimate,
   ],
 }
