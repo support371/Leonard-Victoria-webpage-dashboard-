@@ -37,17 +37,17 @@ This checklist is the active execution queue for stabilizing and completing the 
 - [x] Add repository categories
 - [x] Add tags, ownership labels, and last-updated metadata
 - [x] Add quick preview/open actions
-- [ ] Harden public-site-to-dashboard CTA flow
+- [x] Harden public-site-to-dashboard CTA flow
 - [x] Verify SPA routing on Vercel for all public and dashboard routes
 
 ## P3 — Responsive and UX cleanup
 
 - [x] Fix mobile clipping issues
 - [x] Fix duplicated header / branding behavior
-- [ ] Reduce oversized typography on narrow screens
-- [ ] Improve mobile card stacking and spacing
-- [ ] Tighten public-site spacing and section rhythm
-- [ ] Improve trust cues and CTA clarity on the public site
+- [x] Reduce oversized typography on narrow screens
+- [x] Improve mobile card stacking and spacing
+- [x] Tighten public-site spacing and section rhythm
+- [x] Improve trust cues and CTA clarity on the public site
 
 ## Next feature phase — Community layer
 
@@ -65,11 +65,11 @@ This checklist is the active execution queue for stabilizing and completing the 
 
 ## Completion standard
 
-- [ ] Deployment is stable and reproducible
-- [ ] Leonard is clearly the owner-first command user
-- [ ] All four portals are implemented meaningfully
-- [ ] Review Center behaves like a real workflow surface
-- [ ] Central Repository behaves like a real document system
-- [ ] Public website and internal dashboard feel like one coherent premium product
-- [ ] Mobile experience is clean and intentional
-- [ ] The app feels production-ready
+- [x] Deployment is stable and reproducible
+- [x] Leonard is clearly the owner-first command user
+- [x] All four portals are implemented meaningfully
+- [x] Review Center behaves like a real workflow surface
+- [x] Central Repository behaves like a real document system
+- [x] Public website and internal dashboard feel like one coherent premium product
+- [x] Mobile experience is clean and intentional
+- [x] The app feels production-ready
